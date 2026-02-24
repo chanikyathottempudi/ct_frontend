@@ -1,18 +1,12 @@
 package com.simats.finalapp;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.components.XAxis;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.LineData;
-import com.github.mikephil.charting.data.LineDataSet;
-import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
@@ -23,20 +17,25 @@ public class RealTimeMonitor extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_real_time_monitor);
+        setContentView(R.layout.real_time_monitor);
 
         findViewById(R.id.back_arrow).setOnClickListener(v -> finish());
 
-        String patientName = getIntent().getStringExtra("patientName");
+        RecyclerView recyclerView = findViewById(R.id.real_time_recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        TextView patientNameTextView = findViewById(R.id.patient_name_monitor);
-        patientNameTextView.setText("Patient: " + patientName);
+        List<Patient> patientList = new ArrayList<>();
+        patientList.add(new Patient("Ethan Carter", "123456789", "Male", R.drawable.ic_profile));
+        patientList.add(new Patient("Sophia Clark", "987654321", "Female", R.drawable.ic_profile));
+        patientList.add(new Patient("Liam Davis", "456789123", "Male", R.drawable.ic_profile));
+        patientList.add(new Patient("Olivia Evans", "789123456", "Female", R.drawable.ic_profile));
+        patientList.add(new Patient("Noah Foster", "321654987", "Male", R.drawable.ic_profile));
 
-        LineChart lineChart = findViewById(R.id.patient_line_chart);
-        setupLineChart(lineChart);
+        RealTimeMonitorAdapter adapter = new RealTimeMonitorAdapter(patientList);
+        recyclerView.setAdapter(adapter);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setSelectedItemId(R.id.navigation_patients);
+        bottomNavigationView.setSelectedItemId(R.id.navigation_dashboard);
 
         bottomNavigationView.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
@@ -58,41 +57,5 @@ public class RealTimeMonitor extends AppCompatActivity {
             }
             return false;
         });
-    }
-
-    private void setupLineChart(LineChart lineChart) {
-        List<Entry> entries = new ArrayList<>();
-        // Dummy data for the graph
-        for (int i = 0; i < 10; i++) {
-            entries.add(new Entry(i, (float) (Math.random() * 100)));
-        }
-
-        LineDataSet dataSet = new LineDataSet(entries, "Real-Time Dose");
-        dataSet.setColor(Color.WHITE);
-        dataSet.setValueTextColor(Color.WHITE);
-        dataSet.setCircleColor(Color.WHITE);
-        dataSet.setDrawCircleHole(false);
-        dataSet.setLineWidth(2f);
-        dataSet.setValueTextSize(10f);
-
-        LineData lineData = new LineData(dataSet);
-        lineChart.setData(lineData);
-        lineChart.invalidate();
-
-        lineChart.getDescription().setEnabled(false);
-        lineChart.getLegend().setEnabled(false);
-
-        XAxis xAxis = lineChart.getXAxis();
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xAxis.setTextColor(Color.WHITE);
-        xAxis.setValueFormatter(new ValueFormatter() {
-            @Override
-            public String getFormattedValue(float value) {
-                return String.valueOf((int) value);
-            }
-        });
-
-        lineChart.getAxisLeft().setTextColor(Color.WHITE);
-        lineChart.getAxisRight().setEnabled(false);
     }
 }

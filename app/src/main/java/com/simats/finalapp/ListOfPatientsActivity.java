@@ -27,11 +27,11 @@ public class ListOfPatientsActivity extends AppCompatActivity {
         ListView patientsListView = findViewById(R.id.patients_list_view);
 
         ArrayList<Patient> patients = new ArrayList<>();
-        patients.add(new Patient("Ethan Carter", "123456789", R.drawable.img_21));
-        patients.add(new Patient("Sophia Clark", "987654321", R.drawable.img_22));
-        patients.add(new Patient("Liam Davis", "456789123", R.drawable.img_23));
-        patients.add(new Patient("Olivia Evans", "789123456", R.drawable.img_21));
-        patients.add(new Patient("Noah Foster", "321654987", R.drawable.img_22));
+        patients.add(new Patient("Ethan Carter", "123456789", "Male", R.drawable.img_21));
+        patients.add(new Patient("Sophia Clark", "987654321", "Female", R.drawable.img_22));
+        patients.add(new Patient("Liam Davis", "456789123", "Male", R.drawable.img_23));
+        patients.add(new Patient("Olivia Evans", "789123456", "Female", R.drawable.img_21));
+        patients.add(new Patient("Noah Foster", "321654987", "Male", R.drawable.img_22));
 
         PatientAdapter adapter = new PatientAdapter(this, patients);
         patientsListView.setAdapter(adapter);

@@ -2,10 +2,15 @@ package com.simats.finalapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DailyDoseTrend extends AppCompatActivity {
 
@@ -14,13 +19,43 @@ public class DailyDoseTrend extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.daily_dose_trend);
 
-        ImageView backArrow = findViewById(R.id.back_arrow);
-        backArrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(DailyDoseTrend.this, Dashboard.class);
-                startActivity(intent);
+        findViewById(R.id.back_arrow).setOnClickListener(v -> finish());
+
+        RecyclerView recyclerView = findViewById(R.id.daily_dose_recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        List<Patient> patientList = new ArrayList<>();
+        patientList.add(new Patient("Ethan Carter", "123456789", "male", R.drawable.ic_profile));
+        patientList.add(new Patient("Sophia Clark", "987654321", "female", R.drawable.ic_profile));
+        patientList.add(new Patient("Liam Davis", "456789123", "male", R.drawable.ic_profile));
+        patientList.add(new Patient("Olivia Evans", "789123456", "female", R.drawable.ic_profile));
+        patientList.add(new Patient("Noah Foster", "321654987", "male", R.drawable.ic_profile));
+
+        DailyDoseTrendAdapter adapter = new DailyDoseTrendAdapter(patientList);
+        recyclerView.setAdapter(adapter);
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setSelectedItemId(R.id.navigation_dashboard);
+
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+            if (itemId == R.id.navigation_dashboard) {
+                startActivity(new Intent(DailyDoseTrend.this, Dashboard.class));
+                return true;
+            } else if (itemId == R.id.navigation_patients) {
+                startActivity(new Intent(DailyDoseTrend.this, ListOfPatientsActivity.class));
+                return true;
+            } else if (itemId == R.id.navigation_scans) {
+                startActivity(new Intent(DailyDoseTrend.this, NewScanRegistrationActivity.class));
+                return true;
+            } else if (itemId == R.id.navigation_alerts) {
+                startActivity(new Intent(DailyDoseTrend.this, AlertSlideActivity.class));
+                return true;
+            } else if (itemId == R.id.navigation_admin) {
+                // startActivity(new Intent(DailyDoseTrend.this, AdminActivity.class));
+                return true;
             }
+            return false;
         });
     }
 }

@@ -70,11 +70,11 @@ public class Dashboard extends AppCompatActivity {
         activeAlertsCount = findViewById(R.id.active_alerts_count);
 
         // Dummy data for patients, in a real app this would come from a database or API
-        patientList.add(new Patient("Ethan Carter", "123456789", R.drawable.ic_profile));
-        patientList.add(new Patient("Sophia Clark", "987654321", R.drawable.ic_profile));
-        patientList.add(new Patient("Liam Davis", "456789123", R.drawable.ic_profile));
-        patientList.add(new Patient("Olivia Evans", "789123456", R.drawable.ic_profile));
-        patientList.add(new Patient("Noah Foster", "321654987", R.drawable.ic_profile));
+        patientList.add(new Patient("Ethan Carter", "123456789", "male", R.drawable.ic_profile));
+        patientList.add(new Patient("Sophia Clark", "987654321", "female", R.drawable.ic_profile));
+        patientList.add(new Patient("Liam Davis", "456789123", "male", R.drawable.ic_profile));
+        patientList.add(new Patient("Olivia Evans", "789123456", "female", R.drawable.ic_profile));
+        patientList.add(new Patient("Noah Foster", "321654987", "male", R.drawable.ic_profile));
 
         updateActiveAlertsCount();
 

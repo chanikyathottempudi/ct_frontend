@@ -110,6 +110,19 @@
         <activity
             android:name=".NewScanRegistrationActivity"
             android:exported="false" />
+        <activity
+            android:name=".RealTimePatientDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DoseStatisticsPatientDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DailyDosePatientDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MonthlyDosePatientDetailsActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>

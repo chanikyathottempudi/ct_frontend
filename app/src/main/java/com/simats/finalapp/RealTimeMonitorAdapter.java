@@ -1,5 +1,6 @@
 package com.simats.finalapp;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,6 +40,12 @@ public class RealTimeMonitorAdapter extends RecyclerView.Adapter<RealTimeMonitor
         Patient patient = patientList.get(position);
         holder.patientNameTextView.setText("Patient: " + patient.getName());
         setupLineChart(holder.lineChart);
+
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(v.getContext(), RealTimePatientDetailsActivity.class);
+            intent.putExtra("patientName", patient.getName());
+            v.getContext().startActivity(intent);
+        });
     }
 
     @Override
