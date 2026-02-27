@@ -9,10 +9,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MonthlyDoseTrend extends AppCompatActivity {
+
+    private MonthlyDoseTrendAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,14 +25,9 @@ public class MonthlyDoseTrend extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.monthly_dose_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        List<Patient> patientList = new ArrayList<>();
-        patientList.add(new Patient("Ethan Carter", "123456789", "Male", R.drawable.ic_profile));
-        patientList.add(new Patient("Sophia Clark", "987654321", "Female", R.drawable.ic_profile));
-        patientList.add(new Patient("Liam Davis", "456789123", "Male", R.drawable.ic_profile));
-        patientList.add(new Patient("Olivia Evans", "789123456", "Female", R.drawable.ic_profile));
-        patientList.add(new Patient("Noah Foster", "321654987", "Male", R.drawable.ic_profile));
+        List<Patient> patientList = PatientManager.getInstance().getPatients();
 
-        MonthlyDoseTrendAdapter adapter = new MonthlyDoseTrendAdapter(patientList);
+        adapter = new MonthlyDoseTrendAdapter(patientList);
         recyclerView.setAdapter(adapter);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -52,10 +48,18 @@ public class MonthlyDoseTrend extends AppCompatActivity {
                 startActivity(new Intent(MonthlyDoseTrend.this, AlertSlideActivity.class));
                 return true;
             } else if (itemId == R.id.navigation_admin) {
-                // startActivity(new Intent(MonthlyDoseTrend.this, AdminActivity.class));
+                startActivity(new Intent(MonthlyDoseTrend.this, AdminControlCenterActivity.class));
                 return true;
             }
             return false;
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (adapter != null) {
+            adapter.notifyDataSetChanged();
+        }
     }
 }

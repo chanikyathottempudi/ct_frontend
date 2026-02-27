@@ -26,7 +26,7 @@ public class PatientAdapter extends ArrayAdapter<Patient> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.patient_list_item, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_item_patient, parent, false);
         }
 
         Patient currentPatient = getItem(position);

@@ -9,10 +9,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class DailyDoseTrend extends AppCompatActivity {
+
+    private DailyDoseTrendAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,14 +25,9 @@ public class DailyDoseTrend extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.daily_dose_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        List<Patient> patientList = new ArrayList<>();
-        patientList.add(new Patient("Ethan Carter", "123456789", "male", R.drawable.ic_profile));
-        patientList.add(new Patient("Sophia Clark", "987654321", "female", R.drawable.ic_profile));
-        patientList.add(new Patient("Liam Davis", "456789123", "male", R.drawable.ic_profile));
-        patientList.add(new Patient("Olivia Evans", "789123456", "female", R.drawable.ic_profile));
-        patientList.add(new Patient("Noah Foster", "321654987", "male", R.drawable.ic_profile));
+        List<Patient> patientList = PatientManager.getInstance().getPatients();
 
-        DailyDoseTrendAdapter adapter = new DailyDoseTrendAdapter(patientList);
+        adapter = new DailyDoseTrendAdapter(patientList);
         recyclerView.setAdapter(adapter);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -52,10 +48,18 @@ public class DailyDoseTrend extends AppCompatActivity {
                 startActivity(new Intent(DailyDoseTrend.this, AlertSlideActivity.class));
                 return true;
             } else if (itemId == R.id.navigation_admin) {
-                // startActivity(new Intent(DailyDoseTrend.this, AdminActivity.class));
+                startActivity(new Intent(DailyDoseTrend.this, AdminControlCenterActivity.class));
                 return true;
             }
             return false;
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (adapter != null) {
+            adapter.notifyDataSetChanged();
+        }
     }
 }

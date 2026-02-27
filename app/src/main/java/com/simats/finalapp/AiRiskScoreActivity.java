@@ -47,19 +47,10 @@ public class AiRiskScoreActivity extends AppCompatActivity {
                     startActivity(new Intent(AiRiskScoreActivity.this, Dashboard.class));
                     return true;
                 } else if (itemId == R.id.navigation_patients) {
-                    startActivity(new Intent(AiRiskScoreActivity.this, PatientsList.class));
-                    return true;
-                } else if (itemId == R.id.navigation_scans) {
-                    // Assuming you have a ScansActivity
-                    // startActivity(new Intent(AiRiskScoreActivity.this, ScansActivity.class));
-                    return true;
-                } else if (itemId == R.id.navigation_alerts) {
-                    // Assuming you have an AlertsActivity
-                    // startActivity(new Intent(AiRiskScoreActivity.this, AlertsActivity.class));
+                    startActivity(new Intent(AiRiskScoreActivity.this, Patients.class));
                     return true;
                 } else if (itemId == R.id.navigation_admin) {
-                    // Assuming you have an AdminActivity
-                    // startActivity(new Intent(AiRiskScoreActivity.this, AdminActivity.class));
+                    startActivity(new Intent(AiRiskScoreActivity.this, AdminControlCenterActivity.class));
                     return true;
                 }
                 return false;

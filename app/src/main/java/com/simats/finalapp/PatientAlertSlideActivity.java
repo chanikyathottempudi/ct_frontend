@@ -28,7 +28,7 @@ public class PatientAlertSlideActivity extends AppCompatActivity {
         // Get patient details from intent
         Intent intent = getIntent();
         String patientName = intent.getStringExtra("patientName");
-        int patientImageResId = intent.getIntExtra("patientImage", R.drawable.ic_profile);
+        int patientImageResId = intent.getIntExtra("imageResId", R.drawable.ic_profile);
 
         // Set patient details to the views
         TextView patientNameTextView = findViewById(R.id.patient_name);
@@ -50,7 +50,7 @@ public class PatientAlertSlideActivity extends AppCompatActivity {
                 startActivity(new Intent(PatientAlertSlideActivity.this, Dashboard.class));
                 return true;
             } else if (itemId == R.id.navigation_patients) {
-                startActivity(new Intent(PatientAlertSlideActivity.this, ListOfPatientsActivity.class));
+                startActivity(new Intent(PatientAlertSlideActivity.this, PatientList.class));
                 return true;
             } else if (itemId == R.id.navigation_scans) {
                 // Assuming you have a ScansActivity
@@ -60,8 +60,7 @@ public class PatientAlertSlideActivity extends AppCompatActivity {
                 startActivity(new Intent(PatientAlertSlideActivity.this, AlertSlideActivity.class));
                 return true;
             } else if (itemId == R.id.navigation_admin) {
-                // Assuming you have an AdminActivity
-                // startActivity(new Intent(PatientAlertSlide.this, AdminActivity.class));
+                startActivity(new Intent(PatientAlertSlideActivity.this, AdminControlCenterActivity.class));
                 return true;
             }
             return false;

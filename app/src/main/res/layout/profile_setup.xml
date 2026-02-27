@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000033"
+    android:background="@android:color/white"
     tools:context=".ProfileSetup">
 
     <ImageView
@@ -14,8 +14,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_margin="16dp"
-        android:src="@drawable/ic_arrow_back"
-        app:tint="@android:color/white" />
+        android:src="@drawable/ic_arrow_back" />
 
     <TextView
         android:id="@+id/profile_setup_title"
@@ -24,7 +23,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
         android:text="Profile Setup"
-        android:textColor="@android:color/white"
+        android:textColor="@android:color/black"
         android:textSize="20sp"
         android:textStyle="bold" />
 
@@ -37,54 +36,103 @@
         android:layout_marginTop="32dp"
         android:src="@drawable/ic_profile" />
 
-    <EditText
-        android:id="@+id/full_name_input"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/user_name"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/profile_image"
-        android:layout_marginHorizontal="20dp"
+        android:layout_below="@id/profile_image"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:text="Dr. Amelia Chen"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/professional_title_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/user_name"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="32dp"
-        android:background="@drawable/edit_text_background"
-        android:hint="Full Name"
-        android:padding="15dp"
-        android:textColor="@android:color/white"
-        android:textColorHint="#cccccc" />
+        android:text="Professional Title"
+        android:textColor="@android:color/black"
+        android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/employee_id_input"
+        android:id="@+id/professional_title_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/full_name_input"
+        android:layout_below="@+id/professional_title_label"
         android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/edit_text_background_light"
+        android:hint="e.g., Radiologist"
+        android:padding="15dp" />
+
+    <TextView
+        android:id="@+id/specialization_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/professional_title_input"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="16dp"
-        android:background="@drawable/edit_text_background"
-        android:hint="Employee ID"
-        android:padding="15dp"
-        android:textColor="@android:color/white"
-        android:textColorHint="#cccccc" />
+        android:text="Specialization"
+        android:textColor="@android:color/black"
+        android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/department_input"
+        android:id="@+id/specialization_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/employee_id_input"
+        android:layout_below="@+id/specialization_label"
         android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/edit_text_background_light"
+        android:hint="e.g., Oncology"
+        android:padding="15dp" />
+
+    <TextView
+        android:id="@+id/role_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/specialization_input"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="16dp"
-        android:background="@drawable/edit_text_background"
-        android:hint="Department/Role"
-        android:padding="15dp"
-        android:textColor="@android:color/white"
-        android:textColorHint="#cccccc" />
+        android:text="Role"
+        android:textColor="@android:color/black"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/role_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/role_label"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/edit_text_background_light"
+        android:hint="e.g., Doctor, Admin"
+        android:padding="15dp" />
 
     <Button
-        android:id="@+id/save_profile_button"
+        android:id="@+id/complete_setup_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/logout_button"
+        android:layout_marginHorizontal="20dp"
+        android:background="#0066ff"
+        android:text="Complete Setup"
+        android:textColor="@android:color/white" />
+
+    <Button
+        android:id="@+id/logout_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginHorizontal="20dp"
         android:layout_marginBottom="32dp"
-        android:background="#0066ff"
-        android:text="Save Profile"
-        android:textColor="@android:color/white" />
+        android:background="@drawable/logout_button_background"
+        android:text="Logout"
+        android:textColor="#0066ff" />
 
 </RelativeLayout>

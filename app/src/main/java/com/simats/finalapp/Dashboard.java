@@ -39,7 +39,7 @@ public class Dashboard extends AppCompatActivity {
 
         CardView activeAlertsCard = findViewById(R.id.active_alerts_card);
         activeAlertsCard.setOnClickListener(v -> {
-            Intent intent = new Intent(Dashboard.this, ListOfPatientsActivity.class);
+            Intent intent = new Intent(Dashboard.this, AlertSlideActivity.class);
             startActivity(intent);
         });
 
@@ -64,6 +64,12 @@ public class Dashboard extends AppCompatActivity {
         CardView monthlyDoseTrendCard = findViewById(R.id.monthly_dose_trend_card);
         monthlyDoseTrendCard.setOnClickListener(v -> {
             Intent intent = new Intent(Dashboard.this, MonthlyDoseTrend.class);
+            startActivity(intent);
+        });
+
+        CardView scansCard = findViewById(R.id.scans_card);
+        scansCard.setOnClickListener(v -> {
+            Intent intent = new Intent(Dashboard.this, NewScanRegistrationActivity.class);
             startActivity(intent);
         });
 
@@ -113,10 +119,11 @@ public class Dashboard extends AppCompatActivity {
             } else if (itemId == R.id.navigation_alerts) {
                 startActivity(new Intent(Dashboard.this, AlertSlideActivity.class));
                 return true;
+            } else if (itemId == R.id.navigation_admin) {
+                startActivity(new Intent(Dashboard.this, AdminControlCenterActivity.class));
+                return true;
             }
-            // Assuming you have an AdminActivity
-            // startActivity(new Intent(Dashboard.this, AdminActivity.class));
-            return itemId == R.id.navigation_admin;
+            return false;
         });
     }
 

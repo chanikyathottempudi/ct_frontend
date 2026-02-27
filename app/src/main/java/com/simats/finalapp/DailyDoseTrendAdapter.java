@@ -33,11 +33,18 @@ public class DailyDoseTrendAdapter extends RecyclerView.Adapter<DailyDoseTrendAd
         Patient patient = patientList.get(position);
         holder.patientNameTextView.setText(patient.getName());
         holder.patientIdTextView.setText("ID: " + patient.getId());
-        holder.patientImageView.setImageResource(patient.getImageResId());
+        
+        if ("male".equalsIgnoreCase(patient.getGender())) {
+            holder.patientImageView.setImageResource(R.drawable.men_icon);
+        } else {
+            holder.patientImageView.setImageResource(R.drawable.women_icon);
+        }
 
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(v.getContext(), DailyDosePatientDetailsActivity.class);
             intent.putExtra("patientName", patient.getName());
+            intent.putExtra("patientId", patient.getId());
+            intent.putExtra("patientGender", patient.getGender());
             v.getContext().startActivity(intent);
         });
     }

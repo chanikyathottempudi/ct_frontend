@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">final app</string>
+    <string-array name="roles_array">
+        <item>Radiologist</item>
+        <item>CT Technician</item>
+        <item>Hospital Admin</item>
+    </string-array>
 </resources>

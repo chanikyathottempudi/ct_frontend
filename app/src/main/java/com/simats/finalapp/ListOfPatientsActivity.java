@@ -4,36 +4,34 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ListView;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.simats.finalapp.Patient;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ListOfPatientsActivity extends AppCompatActivity {
+
+    private List<Patient> patients;
+    private PatientAdapter adapter;
+    private ActivityResultLauncher<Intent> registerPatientLauncher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.list_of_patients);
+        setContentView(R.layout.activity_list_of_patients);
 
-        findViewById(R.id.back_arrow).setOnClickListener(v -> {
-            Intent intent = new Intent(ListOfPatientsActivity.this, Dashboard.class);
-            startActivity(intent);
-        });
+        findViewById(R.id.back_arrow).setOnClickListener(v -> finish());
 
         ListView patientsListView = findViewById(R.id.patients_list_view);
 
-        ArrayList<Patient> patients = new ArrayList<>();
-        patients.add(new Patient("Ethan Carter", "123456789", "Male", R.drawable.img_21));
-        patients.add(new Patient("Sophia Clark", "987654321", "Female", R.drawable.img_22));
-        patients.add(new Patient("Liam Davis", "456789123", "Male", R.drawable.img_23));
-        patients.add(new Patient("Olivia Evans", "789123456", "Female", R.drawable.img_21));
-        patients.add(new Patient("Noah Foster", "321654987", "Male", R.drawable.img_22));
+        patients = PatientManager.getInstance().getPatients();
 
-        PatientAdapter adapter = new PatientAdapter(this, patients);
+        adapter = new PatientAdapter(this, (ArrayList<Patient>) patients);
         patientsListView.setAdapter(adapter);
 
         patientsListView.setOnItemClickListener((parent, view, position, id) -> {
@@ -41,29 +39,40 @@ public class ListOfPatientsActivity extends AppCompatActivity {
             Intent intent = new Intent(ListOfPatientsActivity.this, PatientDetails.class);
             intent.putExtra("patientName", selectedPatient.getName());
             intent.putExtra("patientId", selectedPatient.getId());
+            intent.putExtra("patientGender", selectedPatient.getGender());
             intent.putExtra("patientImageResId", selectedPatient.getImageResId());
             startActivity(intent);
         });
 
+        // Initialize ActivityResultLauncher
+        registerPatientLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == RESULT_OK) {
+                        // The patient was added to PatientManager in RegisterPatient activity
+                        adapter.notifyDataSetChanged();
+                    }
+                }
+        );
+
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.navigation_patients);
+
         bottomNavigationView.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
             if (itemId == R.id.navigation_dashboard) {
-                startActivity(new Intent(ListOfPatientsActivity.this, Dashboard.class));
+                startActivity(new Intent(this, Dashboard.class));
                 return true;
             } else if (itemId == R.id.navigation_patients) {
-                // You are already in ListOfPatients, do nothing.
                 return true;
             } else if (itemId == R.id.navigation_scans) {
-                startActivity(new Intent(ListOfPatientsActivity.this, NewScanRegistrationActivity.class));
+                startActivity(new Intent(this, NewScanRegistrationActivity.class));
                 return true;
             } else if (itemId == R.id.navigation_alerts) {
-                startActivity(new Intent(ListOfPatientsActivity.this, AlertSlideActivity.class));
+                startActivity(new Intent(this, AlertSlideActivity.class));
                 return true;
             } else if (itemId == R.id.navigation_admin) {
-                // Assuming you have an AdminActivity
-                // startActivity(new Intent(ListOfPatientsActivity.this, AdminActivity.class));
+                startActivity(new Intent(this, AdminControlCenterActivity.class));
                 return true;
             }
             return false;
@@ -72,7 +81,16 @@ public class ListOfPatientsActivity extends AppCompatActivity {
         FloatingActionButton fabAddPatient = findViewById(R.id.fab_add_patient);
         fabAddPatient.setOnClickListener(view -> {
             Intent intent = new Intent(ListOfPatientsActivity.this, RegisterPatient.class);
-            startActivity(intent);
+            registerPatientLauncher.launch(intent);
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Ensure list is updated if coming back from other screens
+        if (adapter != null) {
+            adapter.notifyDataSetChanged();
+        }
     }
 }

@@ -142,24 +142,6 @@
                 android:textColor="@android:color/white"
                 android:textSize="16sp" />
 
-            <Button
-                android:id="@+id/review_parameters_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:background="#4F4F4F"
-                android:text="Review Parameters"
-                android:textColor="@android:color/white" />
-
-            <Button
-                android:id="@+id/acknowledge_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="#FFC107"
-                android:text="Acknowledge"
-                android:textColor="@android:color/black" />
-
         </LinearLayout>
     </ScrollView>
 

@@ -12,7 +12,6 @@ import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
-import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
@@ -23,17 +22,49 @@ public class RealTimePatientDetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.real_time_patient_details);
+        setContentView(R.layout.activity_real_time_patient_details);
 
         findViewById(R.id.back_arrow).setOnClickListener(v -> finish());
 
+        TextView patientNameTitle = findViewById(R.id.patient_name_title);
+        TextView patientIdDetails = findViewById(R.id.patient_id_details);
+        TextView patientGenderDetails = findViewById(R.id.patient_gender_details);
+
         String patientName = getIntent().getStringExtra("patientName");
+        String patientId = getIntent().getStringExtra("patientId");
+        String patientGender = getIntent().getStringExtra("patientGender");
 
-        TextView patientNameTextView = findViewById(R.id.patient_name_details);
-        patientNameTextView.setText("Patient: " + patientName);
+        patientNameTitle.setText(patientName);
+        patientIdDetails.setText("ID: " + patientId);
+        patientGenderDetails.setText("Gender: " + patientGender);
 
-        LineChart lineChart = findViewById(R.id.patient_line_chart_details);
-        setupLineChart(lineChart);
+        LineChart chart = findViewById(R.id.real_time_dose_chart);
+
+        List<Entry> entries = new ArrayList<>();
+        entries.add(new Entry(0, 1f));
+        entries.add(new Entry(1, 2f));
+        entries.add(new Entry(2, 3f));
+        entries.add(new Entry(3, 4f));
+        entries.add(new Entry(4, 5f));
+        entries.add(new Entry(5, 4f));
+        entries.add(new Entry(6, 3f));
+
+        LineDataSet dataSet = new LineDataSet(entries, "Real-Time Dose");
+        dataSet.setColor(Color.RED);
+        dataSet.setValueTextColor(Color.WHITE);
+        dataSet.setCircleColor(Color.RED);
+        dataSet.setCircleHoleColor(Color.WHITE);
+
+        LineData lineData = new LineData(dataSet);
+        chart.setData(lineData);
+        chart.invalidate(); // refresh
+
+        chart.getDescription().setEnabled(false);
+        chart.getLegend().setTextColor(Color.WHITE);
+        chart.getXAxis().setTextColor(Color.WHITE);
+        chart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
+        chart.getAxisLeft().setTextColor(Color.WHITE);
+        chart.getAxisRight().setEnabled(false);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.navigation_dashboard);
@@ -53,46 +84,10 @@ public class RealTimePatientDetailsActivity extends AppCompatActivity {
                 startActivity(new Intent(RealTimePatientDetailsActivity.this, AlertSlideActivity.class));
                 return true;
             } else if (itemId == R.id.navigation_admin) {
-                // startActivity(new Intent(RealTimePatientDetailsActivity.this, AdminActivity.class));
+                startActivity(new Intent(RealTimePatientDetailsActivity.this, AdminControlCenterActivity.class));
                 return true;
             }
             return false;
         });
-    }
-
-    private void setupLineChart(LineChart lineChart) {
-        List<Entry> entries = new ArrayList<>();
-        // Dummy data for the graph
-        for (int i = 0; i < 10; i++) {
-            entries.add(new Entry(i, (float) (Math.random() * 100)));
-        }
-
-        LineDataSet dataSet = new LineDataSet(entries, "Real-Time Dose");
-        dataSet.setColor(Color.WHITE);
-        dataSet.setValueTextColor(Color.WHITE);
-        dataSet.setCircleColor(Color.WHITE);
-        dataSet.setDrawCircleHole(false);
-        dataSet.setLineWidth(2f);
-        dataSet.setValueTextSize(10f);
-
-        LineData lineData = new LineData(dataSet);
-        lineChart.setData(lineData);
-        lineChart.invalidate();
-
-        lineChart.getDescription().setEnabled(false);
-        lineChart.getLegend().setEnabled(false);
-
-        XAxis xAxis = lineChart.getXAxis();
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xAxis.setTextColor(Color.WHITE);
-        xAxis.setValueFormatter(new ValueFormatter() {
-            @Override
-            public String getFormattedValue(float value) {
-                return String.valueOf((int) value);
-            }
-        });
-
-        lineChart.getAxisLeft().setTextColor(Color.WHITE);
-        lineChart.getAxisRight().setEnabled(false);
     }
 }

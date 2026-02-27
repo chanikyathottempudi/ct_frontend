@@ -1,34 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="16dp">
+    android:orientation="horizontal"
+    android:padding="8dp">
 
-    <ImageView
-        android:id="@+id/gender_icon"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_alignParentStart="true"
-        android:layout_centerVertical="true"
-        android:src="@drawable/men_icon" />
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/patient_image"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/img_24" />
 
-    <TextView
-        android:id="@+id/patient_name"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@id/gender_icon"
-        android:layout_marginStart="16dp"
-        android:text="Ethan Carter"
-        android:textColor="@android:color/white"
-        android:textStyle="bold" />
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_marginStart="8dp">
 
-    <TextView
-        android:id="@+id/patient_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/patient_name"
-        android:layout_alignStart="@id/patient_name"
-        android:text="ID: 123456789"
-        android:textColor="@android:color/white" />
+        <TextView
+            android:id="@+id/patient_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Patient Name"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/patient_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:text="ID: 12345" />
+    </LinearLayout>
+
+</LinearLayout>

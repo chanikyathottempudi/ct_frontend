@@ -4,33 +4,37 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ListView;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.simats.finalapp.Patient;
 
 import java.util.ArrayList;
 
 public class Patients extends AppCompatActivity {
 
+    private static final int ADD_PATIENT_REQUEST = 1;
+    private ArrayList<Patient> patients;
+    private PatientAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.patients_list);
+        setContentView(R.layout.activity_list_of_patients);
 
         findViewById(R.id.back_arrow).setOnClickListener(v -> finish());
 
         ListView patientsListView = findViewById(R.id.patients_list_view);
 
-        ArrayList<Patient> patients = new ArrayList<>();
-        patients.add(new Patient("Ethan Carter", "123456789", "Male", R.drawable.ic_profile));
-        patients.add(new Patient("Sophia Clark", "987654321", "Female", R.drawable.ic_profile));
-        patients.add(new Patient("Liam Davis", "456789123", "Male", R.drawable.ic_profile));
-        patients.add(new Patient("Olivia Evans", "789123456", "Female", R.drawable.ic_profile));
-        patients.add(new Patient("Noah Foster", "321654987", "Male", R.drawable.ic_profile));
+        patients = new ArrayList<>();
+        patients.add(new Patient("Ethan Carter", "123456789", "Male", R.drawable.men_icon));
+        patients.add(new Patient("Sophia Clark", "987654321", "Female", R.drawable.women_icon));
+        patients.add(new Patient("Liam Davis", "456789123", "Male", R.drawable.men_icon));
+        patients.add(new Patient("Olivia Evans", "789123456", "Female", R.drawable.women_icon));
+        patients.add(new Patient("Noah Foster", "321654987", "Male", R.drawable.men_icon));
 
-        PatientAdapter adapter = new PatientAdapter(this, patients);
+        adapter = new PatientAdapter(this, patients);
         patientsListView.setAdapter(adapter);
 
         patientsListView.setOnItemClickListener((parent, view, position, id) -> {
@@ -55,7 +59,27 @@ public class Patients extends AppCompatActivity {
         FloatingActionButton fabAddPatient = findViewById(R.id.fab_add_patient);
         fabAddPatient.setOnClickListener(view -> {
             Intent intent = new Intent(Patients.this, RegisterPatient.class);
-            startActivity(intent);
+            startActivityForResult(intent, ADD_PATIENT_REQUEST);
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == ADD_PATIENT_REQUEST && resultCode == RESULT_OK && data != null) {
+            String fullName = data.getStringExtra("fullName");
+            String patientId = data.getStringExtra("patientId");
+            String gender = data.getStringExtra("gender");
+
+            int imageResId = R.drawable.men_icon; // Default
+            if ("Female".equalsIgnoreCase(gender)) {
+                imageResId = R.drawable.women_icon;
+            }
+
+            Patient newPatient = new Patient(fullName, patientId, gender, imageResId);
+            patients.add(newPatient);
+            adapter.notifyDataSetChanged();
+        }
     }
 }

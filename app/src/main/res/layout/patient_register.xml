@@ -45,11 +45,13 @@
                 android:textColor="@android:color/white" />
 
             <EditText
+                android:id="@+id/edit_text_full_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/edit_text_background"
-                android:padding="12dp" />
+                android:padding="12dp"
+                android:textColor="@android:color/white"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -59,12 +61,14 @@
                 android:textColor="@android:color/white" />
 
             <EditText
+                android:id="@+id/edit_text_dob"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/edit_text_background"
                 android:inputType="date"
-                android:padding="12dp" />
+                android:padding="12dp"
+                android:textColor="@android:color/white"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -74,6 +78,7 @@
                 android:textColor="@android:color/white" />
 
             <Spinner
+                android:id="@+id/spinner_gender"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -88,48 +93,13 @@
                 android:textColor="@android:color/white" />
 
             <EditText
+                android:id="@+id/edit_text_patient_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/edit_text_background"
-                android:padding="12dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:text="Clinical Information"
-                android:textColor="@android:color/white"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Reason for Referral"
-                android:textColor="@android:color/white" />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/edit_text_background"
-                android:padding="12dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Primary Physician"
-                android:textColor="@android:color/white" />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/edit_text_background"
-                android:padding="12dp" />
+                android:padding="12dp"
+                android:textColor="@android:color/white"/>
 
         </LinearLayout>
     </ScrollView>

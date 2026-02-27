@@ -68,15 +68,13 @@ public class AlertSlideActivity extends AppCompatActivity {
                     startActivity(new Intent(AlertSlideActivity.this, ListOfPatientsActivity.class));
                     return true;
                 } else if (itemId == R.id.navigation_scans) {
-                    // Assuming you have a ScansActivity
-                    // startActivity(new Intent(AlertSlideActivity.this, ScansActivity.class));
+                    startActivity(new Intent(AlertSlideActivity.this, NewScanRegistrationActivity.class));
                     return true;
                 } else if (itemId == R.id.navigation_alerts) {
-                    // You are already in AlertSlideActivity, do nothing.
+                    // You are already on this screen
                     return true;
                 } else if (itemId == R.id.navigation_admin) {
-                    // Assuming you have an AdminActivity
-                    // startActivity(new Intent(AlertSlideActivity.this, AdminActivity.class));
+                    startActivity(new Intent(AlertSlideActivity.this, AdminControlCenterActivity.class));
                     return true;
                 }
                 return false;

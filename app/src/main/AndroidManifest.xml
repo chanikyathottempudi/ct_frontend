@@ -111,18 +111,44 @@
             android:name=".NewScanRegistrationActivity"
             android:exported="false" />
         <activity
-            android:name=".RealTimePatientDetailsActivity"
+            android:name=".DoseStatisticsPatientDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".DoseStatisticsPatientDetailsActivity"
+            android:name=".MonthlyDosePatientDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PatientsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AdminControlCenterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UserManagementActivity"
+            android:exported="false" />
+        <activity
+            android:name=".NewUserAddingSlideActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UserDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SecurityAndPrivacyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MachineIntegrationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ComplianceReportsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SystemLogsActivity"
             android:exported="false" />
         <activity
             android:name=".DailyDosePatientDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".MonthlyDosePatientDetailsActivity"
+            android:name=".RealTimePatientDetailsActivity"
             android:exported="false" />
-
     </application>
 
 </manifest>
