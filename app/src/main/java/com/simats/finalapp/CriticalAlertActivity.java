@@ -38,11 +38,7 @@ public class CriticalAlertActivity extends AppCompatActivity {
                     startActivity(new Intent(CriticalAlertActivity.this, Dashboard.class));
                     return true;
                 } else if (itemId == R.id.navigation_patients) {
-                    startActivity(new Intent(CriticalAlertActivity.this, PatientList.class));
-                    return true;
-                } else if (itemId == R.id.navigation_scans) {
-                    // Assuming you have a ScansActivity
-                    // startActivity(new Intent(CriticalAlertActivity.this, ScansActivity.class));
+                    startActivity(new Intent(CriticalAlertActivity.this, ListOfPatientsActivity.class));
                     return true;
                 } else if (itemId == R.id.navigation_alerts) {
                     startActivity(new Intent(CriticalAlertActivity.this, PatientAlertSlideActivity.class));

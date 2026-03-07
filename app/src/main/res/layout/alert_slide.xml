@@ -34,14 +34,30 @@
                 android:src="@drawable/ic_arrow_back"
                 app:tint="@android:color/white" />
 
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="Alerts"
-                android:textColor="@android:color/white"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/alert_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Alerts"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/active_alerts_count_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0 Active Alerts"
+                    android:textColor="#A9A9A9"
+                    android:textSize="12sp" />
+            </LinearLayout>
 
         </RelativeLayout>
 
@@ -55,6 +71,7 @@
             app:tabTextColor="#A9A9A9">
 
             <com.google.android.material.tabs.TabItem
+                android:id="@+id/tab_all"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="All" />

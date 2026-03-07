@@ -9,7 +9,7 @@
         android:title="Patients" />
     <item
         android:id="@+id/navigation_scans"
-        android:icon="@drawable/ic_scans"
+        android:icon="@drawable/navigation_scans"
         android:title="Scans" />
     <item
         android:id="@+id/navigation_alerts"

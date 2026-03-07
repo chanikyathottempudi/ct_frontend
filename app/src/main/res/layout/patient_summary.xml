@@ -44,7 +44,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:text="Region-wise Dose Summary"
+                    android:text="AI Body Scan Dose Analysis"
                     android:textColor="@android:color/white"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -60,12 +60,35 @@
                 android:textSize="18sp"
                 tools:text="Patient: Ethan Carter" />
 
-            <ImageView
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:adjustViewBounds="true"
-                android:src="@drawable/img_26" />
+                android:layout_marginTop="16dp">
+
+                <ImageView
+                    android:id="@+id/body_scan_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/img_26" />
+
+                <View
+                    android:id="@+id/scan_line"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="#00BCD4"
+                    android:visibility="gone" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/ai_prediction_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:text="AI Predicting Dose Values..."
+                android:textColor="#00BCD4"
+                android:textStyle="italic" />
 
             <GridLayout
                 android:layout_width="match_parent"
@@ -88,9 +111,10 @@
                         android:textSize="16sp" />
 
                     <TextView
+                        android:id="@+id/dose_head"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="12.5 mGy / 1.25 mSv"
+                        android:text="Calculating..."
                         android:textColor="@android:color/darker_gray" />
                 </LinearLayout>
 
@@ -109,9 +133,10 @@
                         android:textSize="16sp" />
 
                     <TextView
+                        android:id="@+id/dose_chest"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="25.0 mGy / 2.50 mSv"
+                        android:text="Calculating..."
                         android:textColor="@android:color/darker_gray" />
                 </LinearLayout>
 
@@ -130,9 +155,10 @@
                         android:textSize="16sp" />
 
                     <TextView
+                        android:id="@+id/dose_pelvis"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="18.75 mGy / 1.88 mSv"
+                        android:text="Calculating..."
                         android:textColor="@android:color/darker_gray" />
                 </LinearLayout>
 
@@ -151,9 +177,10 @@
                         android:textSize="16sp" />
 
                     <TextView
+                        android:id="@+id/dose_abdomen"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="22.5 mGy / 2.25 mSv"
+                        android:text="Calculating..."
                         android:textColor="@android:color/darker_gray" />
                 </LinearLayout>
 
@@ -172,9 +199,10 @@
                         android:textSize="16sp" />
 
                     <TextView
+                        android:id="@+id/dose_legs"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="15.0 mGy / 1.50 mSv"
+                        android:text="Calculating..."
                         android:textColor="@android:color/darker_gray" />
                 </LinearLayout>
 
@@ -193,9 +221,10 @@
                         android:textSize="16sp" />
 
                     <TextView
+                        android:id="@+id/dose_arms"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="10.0 mGy / 1.00 mSv"
+                        android:text="Calculating..."
                         android:textColor="@android:color/darker_gray" />
                 </LinearLayout>
 

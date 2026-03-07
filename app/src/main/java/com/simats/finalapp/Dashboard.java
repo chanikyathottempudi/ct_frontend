@@ -3,22 +3,18 @@ package com.simats.finalapp;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.simats.finalapp.Patient;
 
 import java.util.ArrayList;
 
 public class Dashboard extends AppCompatActivity {
 
     private TextView activeAlertsCount;
-    private final ArrayList<Patient> patientList = new ArrayList<>(); // In a real app, this would be managed elsewhere
     private int imageResId;
 
     @Override
@@ -37,68 +33,50 @@ public class Dashboard extends AppCompatActivity {
             startActivity(intent);
         });
 
-        CardView activeAlertsCard = findViewById(R.id.active_alerts_card);
-        activeAlertsCard.setOnClickListener(v -> {
-            Intent intent = new Intent(Dashboard.this, AlertSlideActivity.class);
-            startActivity(intent);
+        findViewById(R.id.active_alerts_card).setOnClickListener(v -> {
+            startActivity(new Intent(Dashboard.this, AlertSlideActivity.class));
         });
 
-        CardView realTimeMonitorCard = findViewById(R.id.real_time_monitor_card);
-        realTimeMonitorCard.setOnClickListener(v -> {
-            Intent intent = new Intent(Dashboard.this, RealTimeMonitor.class);
-            startActivity(intent);
+        findViewById(R.id.real_time_monitor_card).setOnClickListener(v -> {
+            startActivity(new Intent(Dashboard.this, RealTimeMonitor.class));
         });
 
-        CardView doseStatisticsCard = findViewById(R.id.dose_statistics_card);
-        doseStatisticsCard.setOnClickListener(v -> {
-            Intent intent = new Intent(Dashboard.this, DoseStatistics.class);
-            startActivity(intent);
+        findViewById(R.id.dose_statistics_card).setOnClickListener(v -> {
+            startActivity(new Intent(Dashboard.this, DoseStatistics.class));
         });
 
-        CardView dailyDoseTrendCard = findViewById(R.id.daily_dose_trend_card);
-        dailyDoseTrendCard.setOnClickListener(v -> {
-            Intent intent = new Intent(Dashboard.this, DailyDoseTrend.class);
-            startActivity(intent);
+        findViewById(R.id.daily_dose_trend_card).setOnClickListener(v -> {
+            startActivity(new Intent(Dashboard.this, DailyDoseTrend.class));
         });
 
-        CardView monthlyDoseTrendCard = findViewById(R.id.monthly_dose_trend_card);
-        monthlyDoseTrendCard.setOnClickListener(v -> {
-            Intent intent = new Intent(Dashboard.this, MonthlyDoseTrend.class);
-            startActivity(intent);
-        });
-
-        CardView scansCard = findViewById(R.id.scans_card);
-        scansCard.setOnClickListener(v -> {
-            Intent intent = new Intent(Dashboard.this, NewScanRegistrationActivity.class);
-            startActivity(intent);
+        findViewById(R.id.monthly_dose_trend_card).setOnClickListener(v -> {
+            startActivity(new Intent(Dashboard.this, MonthlyDoseTrend.class));
         });
 
         activeAlertsCount = findViewById(R.id.active_alerts_count);
+        // Corrected: Now showing count of actual alerts instead of all patients
+        int alertsCount = AlertManager.getInstance().getAlertCount();
+        activeAlertsCount.setText(String.valueOf(alertsCount));
 
-        // Dummy data for patients, in a real app this would come from a database or API
-        patientList.add(new Patient("Ethan Carter", "123456789", "male", R.drawable.ic_profile));
-        patientList.add(new Patient("Sophia Clark", "987654321", "female", R.drawable.ic_profile));
-        patientList.add(new Patient("Liam Davis", "456789123", "male", R.drawable.ic_profile));
-        patientList.add(new Patient("Olivia Evans", "789123456", "female", R.drawable.ic_profile));
-        patientList.add(new Patient("Noah Foster", "321654987", "male", R.drawable.ic_profile));
-
-        updateActiveAlertsCount();
-
-        Button aiRiskScoreButton = findViewById(R.id.ai_risk_score_button);
-        aiRiskScoreButton.setOnClickListener(v -> {
-            Intent intent = new Intent(Dashboard.this, AiRiskScoreActivity.class);
+        // AI Safety Intelligence buttons
+        findViewById(R.id.ai_risk_score_button).setOnClickListener(v -> {
+            Intent intent = new Intent(Dashboard.this, ListOfPatientsActivity.class);
+            intent.putExtra("FROM_AI_SAFETY", true);
+            intent.putExtra("TARGET_AI_ACTIVITY", "AI_RISK");
             startActivity(intent);
         });
 
-        Button predictDoseButton = findViewById(R.id.predict_dose_button);
-        predictDoseButton.setOnClickListener(v -> {
-            Intent intent = new Intent(Dashboard.this, PredictDoseSlideActivity.class);
+        findViewById(R.id.predict_dose_button).setOnClickListener(v -> {
+            Intent intent = new Intent(Dashboard.this, ListOfPatientsActivity.class);
+            intent.putExtra("FROM_AI_SAFETY", true);
+            intent.putExtra("TARGET_AI_ACTIVITY", "PREDICT_DOSE");
             startActivity(intent);
         });
 
-        Button detectAnomaliesButton = findViewById(R.id.detect_anomalies_button);
-        detectAnomaliesButton.setOnClickListener(v -> {
-            Intent intent = new Intent(Dashboard.this, DetectAnomaliesSlideActivity.class);
+        findViewById(R.id.detect_anomalies_button).setOnClickListener(v -> {
+            Intent intent = new Intent(Dashboard.this, ListOfPatientsActivity.class);
+            intent.putExtra("FROM_AI_SAFETY", true);
+            intent.putExtra("TARGET_AI_ACTIVITY", "DETECT_ANOMALIES");
             startActivity(intent);
         });
 
@@ -108,7 +86,6 @@ public class Dashboard extends AppCompatActivity {
         bottomNavigationView.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
             if (itemId == R.id.navigation_dashboard) {
-                // You are already in Dashboard, do nothing.
                 return true;
             } else if (itemId == R.id.navigation_patients) {
                 startActivity(new Intent(Dashboard.this, ListOfPatientsActivity.class));
@@ -127,7 +104,12 @@ public class Dashboard extends AppCompatActivity {
         });
     }
 
-    private void updateActiveAlertsCount() {
-        activeAlertsCount.setText(String.valueOf(patientList.size()));
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Refresh count when returning to dashboard
+        if (activeAlertsCount != null) {
+            activeAlertsCount.setText(String.valueOf(AlertManager.getInstance().getAlertCount()));
+        }
     }
 }

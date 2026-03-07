@@ -15,6 +15,7 @@ public class RegisterPatient extends AppCompatActivity {
     private EditText editTextDob;
     private Spinner spinnerGender;
     private EditText editTextPatientId;
+    private EditText editTextAllergies;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +26,7 @@ public class RegisterPatient extends AppCompatActivity {
         editTextDob = findViewById(R.id.edit_text_dob);
         spinnerGender = findViewById(R.id.spinner_gender);
         editTextPatientId = findViewById(R.id.edit_text_patient_id);
+        editTextAllergies = findViewById(R.id.edit_text_allergies);
 
         findViewById(R.id.close_button).setOnClickListener(v -> finish());
 
@@ -39,6 +41,7 @@ public class RegisterPatient extends AppCompatActivity {
             String dob = editTextDob.getText().toString();
             String gender = spinnerGender.getSelectedItem().toString();
             String patientId = editTextPatientId.getText().toString();
+            String allergies = editTextAllergies.getText().toString();
 
             if (fullName.isEmpty() || patientId.isEmpty()) {
                 if (fullName.isEmpty()) editTextFullName.setError("Required");
@@ -46,8 +49,12 @@ public class RegisterPatient extends AppCompatActivity {
                 return;
             }
 
+            if (allergies.isEmpty()) {
+                allergies = "None";
+            }
+
             int imageResId = "Female".equalsIgnoreCase(gender) ? R.drawable.women_icon : R.drawable.men_icon;
-            Patient newPatient = new Patient(fullName, patientId, gender, imageResId);
+            Patient newPatient = new Patient(fullName, patientId, gender, imageResId, allergies);
             PatientManager.getInstance().addPatient(newPatient);
 
             setResult(RESULT_OK);

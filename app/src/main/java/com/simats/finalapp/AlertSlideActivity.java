@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,10 +35,16 @@ public class AlertSlideActivity extends AppCompatActivity {
         ListView alertsListView = findViewById(R.id.alerts_list_view);
 
         ArrayList<Alert> alerts = new ArrayList<>();
-        alerts.add(new Alert("Patient: Ethan Carter", "Room 201", R.drawable.img_21));
-        alerts.add(new Alert("Patient: Olivia Bennett", "Room 305", R.drawable.img_22));
-        alerts.add(new Alert("Patient: Noah Thompson", "Room 102", R.drawable.img_23));
-        alerts.add(new Alert("Patient: Ava Martinez", "Room 408", R.drawable.img_21));
+        alerts.add(new Alert("Patient: Aarav Sharma", "Room 201", R.drawable.men_icon));
+        alerts.add(new Alert("Patient: Ishani Gupta", "Room 305", R.drawable.women_icon));
+        alerts.add(new Alert("Patient: Vihaan Malhotra", "Room 102", R.drawable.men_icon));
+        alerts.add(new Alert("Patient: Diya Iyer", "Room 408", R.drawable.women_icon));
+
+        // Update the count of active alerts in the UI
+        TextView alertCountText = findViewById(R.id.active_alerts_count_text);
+        if (alertCountText != null) {
+            alertCountText.setText(alerts.size() + " Active Alerts");
+        }
 
         AlertAdapter adapter = new AlertAdapter(this, alerts);
         alertsListView.setAdapter(adapter);
@@ -57,7 +64,7 @@ public class AlertSlideActivity extends AppCompatActivity {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.navigation_alerts);
 
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+        bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int itemId = item.getItemId();
@@ -71,7 +78,6 @@ public class AlertSlideActivity extends AppCompatActivity {
                     startActivity(new Intent(AlertSlideActivity.this, NewScanRegistrationActivity.class));
                     return true;
                 } else if (itemId == R.id.navigation_alerts) {
-                    // You are already on this screen
                     return true;
                 } else if (itemId == R.id.navigation_admin) {
                     startActivity(new Intent(AlertSlideActivity.this, AdminControlCenterActivity.class));

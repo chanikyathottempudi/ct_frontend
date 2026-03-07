@@ -79,9 +79,6 @@ public class DailyDosePatientDetailsActivity extends AppCompatActivity {
             } else if (itemId == R.id.navigation_patients) {
                 startActivity(new Intent(DailyDosePatientDetailsActivity.this, ListOfPatientsActivity.class));
                 return true;
-            } else if (itemId == R.id.navigation_scans) {
-                startActivity(new Intent(DailyDosePatientDetailsActivity.this, NewScanRegistrationActivity.class));
-                return true;
             } else if (itemId == R.id.navigation_alerts) {
                 startActivity(new Intent(DailyDosePatientDetailsActivity.this, AlertSlideActivity.class));
                 return true;

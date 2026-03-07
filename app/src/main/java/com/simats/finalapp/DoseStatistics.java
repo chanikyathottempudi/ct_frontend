@@ -41,9 +41,6 @@ public class DoseStatistics extends AppCompatActivity {
             } else if (itemId == R.id.navigation_patients) {
                 startActivity(new Intent(DoseStatistics.this, ListOfPatientsActivity.class));
                 return true;
-            } else if (itemId == R.id.navigation_scans) {
-                startActivity(new Intent(DoseStatistics.this, NewScanRegistrationActivity.class));
-                return true;
             } else if (itemId == R.id.navigation_alerts) {
                 startActivity(new Intent(DoseStatistics.this, AlertSlideActivity.class));
                 return true;

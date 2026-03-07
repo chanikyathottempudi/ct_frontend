@@ -38,145 +38,187 @@
                     android:src="@drawable/ic_arrow_back" />
 
                 <TextView
+                    android:id="@+id/header_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:text="Input Parameters"
+                    android:text="AI Analysis Report"
                     android:textColor="@android:color/black"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
             </RelativeLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Body Part" />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/edit_text_background"
-                android:hint="Select examination area"
-                android:padding="12dp" />
-
+            <!-- Input Parameters Section - Hidden as per request for "Only AI Analysis" -->
             <LinearLayout
+                android:id="@+id/input_parameters_section"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:orientation="horizontal">
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Body Part" />
+
+                <EditText
+                    android:id="@+id/body_part_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_text_background"
+                    android:hint="Select examination area"
+                    android:padding="12dp" />
 
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Age (years)" />
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
-                    <EditText
-                        android:layout_width="match_parent"
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Age (years)" />
+
+                        <EditText
+                            android:id="@+id/age_edit_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/edit_text_background"
+                            android:inputType="number"
+                            android:text="0"
+                            android:padding="12dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/edit_text_background"
-                        android:inputType="number"
-                        android:text="0"
-                        android:padding="12dp" />
+                        android:layout_marginStart="8dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Weight (kg)" />
+
+                        <EditText
+                            android:id="@+id/weight_edit_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/edit_text_background"
+                            android:inputType="numberDecimal"
+                            android:text="0.0"
+                            android:padding="12dp" />
+                    </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Weight (kg)" />
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
-                    <EditText
-                        android:layout_width="match_parent"
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="kVp" />
+
+                        <EditText
+                            android:id="@+id/kvp_edit_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/edit_text_background"
+                            android:inputType="number"
+                            android:text="120"
+                            android:padding="12dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/edit_text_background"
-                        android:inputType="numberDecimal"
-                        android:text="0.0"
-                        android:padding="12dp" />
+                        android:layout_marginStart="8dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="mAs" />
+
+                        <EditText
+                            android:id="@+id/mas_edit_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/edit_text_background"
+                            android:inputType="number"
+                            android:text="250"
+                            android:padding="12dp" />
+                    </LinearLayout>
                 </LinearLayout>
+
+                <Button
+                    android:id="@+id/generate_prediction_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:backgroundTint="#0066ff"
+                    android:text="Regenerate Prediction"
+                    android:textColor="@android:color/white" />
             </LinearLayout>
 
+            <!-- Loading State for AI Analysis -->
             <LinearLayout
+                android:id="@+id/loading_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:orientation="horizontal">
+                android:gravity="center"
+                android:layout_marginTop="50dp"
+                android:orientation="vertical"
+                android:visibility="visible">
 
-                <LinearLayout
-                    android:layout_width="0dp"
+                <ProgressBar
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:indeterminateTint="#0066ff" />
+
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="kVp" />
-
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/edit_text_background"
-                        android:inputType="number"
-                        android:text="120"
-                        android:padding="12dp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="mAs" />
-
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/edit_text_background"
-                        android:inputType="number"
-                        android:text="250"
-                        android:padding="12dp" />
-                </LinearLayout>
+                    android:layout_marginTop="16dp"
+                    android:text="AI Model Generating Analysis..."
+                    android:textColor="#0066ff"
+                    android:textStyle="bold" />
             </LinearLayout>
-
-            <Button
-                android:id="@+id/generate_prediction_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="#0066ff"
-                android:text="Generate Prediction"
-                android:textColor="@android:color/white" />
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/ai_results_card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:cardCornerRadius="8dp">
+                android:layout_marginTop="24dp"
+                android:visibility="gone"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="4dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="16dp">
+                    android:padding="20dp">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -186,142 +228,149 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentStart="true"
-                            android:text="AI ANALYSIS RESULTS" />
+                            android:text="AI DETAILED ANALYSIS"
+                            android:textColor="@android:color/darker_gray"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/risk_status_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
                             android:background="#C8E6C9"
-                            android:padding="4dp"
+                            android:paddingStart="8dp"
+                            android:paddingTop="4dp"
+                            android:paddingEnd="8dp"
+                            android:paddingBottom="4dp"
                             android:text="LOW RISK"
-                            android:textColor="#388E3C" />
+                            android:textColor="#388E3C"
+                            android:textStyle="bold" />
                     </RelativeLayout>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="16dp"
                         android:text="PREDICTED DLP" />
 
                     <TextView
+                        android:id="@+id/predicted_dlp_value"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="350 mGy.cm"
+                        android:text="--- mGy.cm"
                         android:textColor="@android:color/black"
-                        android:textSize="24sp"
+                        android:textSize="28sp"
                         android:textStyle="bold" />
 
                     <ProgressBar
+                        android:id="@+id/dlp_progress_bar"
                         style="?android:attr/progressBarStyleHorizontal"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:progress="70" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="8dp"
                         android:layout_marginTop="8dp"
-                        android:text="EFFECTIVE DOSE" />
+                        android:progress="0" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="7.2 mSv"
+                        android:layout_marginTop="20dp"
+                        android:text="EFFECTIVE DOSE ESTIMATION" />
+
+                    <TextView
+                        android:id="@+id/effective_dose_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="--- mSv"
                         android:textColor="@android:color/black"
-                        android:textSize="24sp"
+                        android:textSize="28sp"
                         android:textStyle="bold" />
 
                     <ProgressBar
+                        android:id="@+id/dose_progress_bar"
                         style="?android:attr/progressBarStyleHorizontal"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:progress="50"
+                        android:layout_height="8dp"
+                        android:layout_marginTop="8dp"
+                        android:progress="0"
                         android:progressTint="#4CAF50"/>
 
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="20dp"
+                        android:background="#e0e0e0" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="AI RECOMMENDATION"
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/protocol_tip_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="Values are generated by AI model v4.2 based on historical clinical data. Please verify with standard protocols."
+                        android:text="Analyzing clinical history..."
+                        android:textColor="@android:color/black" />
+
+                    <TextView
+                        android:id="@+id/last_record_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Previous scan data sync: Active"
                         android:textSize="12sp" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <GridLayout
+            <androidx.cardview.widget.CardView
+                android:id="@+id/intelligence_card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:columnCount="2"
-                android:rowCount="1">
+                android:visibility="gone"
+                app:cardBackgroundColor="#E3F2FD"
+                app:cardCornerRadius="12dp">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="0dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:layout_margin="4dp"
-                    app:cardBackgroundColor="#E3F2FD"
-                    app:cardCornerRadius="8dp">
+                    android:orientation="horizontal"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/img_15" />
 
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="16dp">
-
-                        <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:src="@android:drawable/ic_dialog_info" />
+                        android:layout_marginStart="16dp"
+                        android:orientation="vertical">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Protocol Tip"
+                            android:text="AI Insights"
                             android:textColor="#0066ff"
                             android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Reduce kVp for pediatric patients to lower dose." />
+                            android:text="Based on 1.2M clinical records, this patient's risk profile is stable."
+                            android:textSize="13sp" />
                     </LinearLayout>
-                </androidx.cardview.widget.CardView>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:layout_margin="4dp"
-                    app:cardBackgroundColor="#FFF9C4"
-                    app:cardCornerRadius="8dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="16dp">
-
-                        <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:src="@android:drawable/ic_menu_recent_history" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Last Record"
-                            android:textColor="#FBC02D"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="DLP 420 mGy.cm for 7 male head CT." />
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-            </GridLayout>
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>

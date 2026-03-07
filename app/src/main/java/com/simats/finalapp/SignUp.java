@@ -3,8 +3,10 @@ package com.simats.finalapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -23,11 +25,19 @@ public class SignUp extends AppCompatActivity {
             }
         });
 
+        // Setting up the Role Spinner with options
+        Spinner roleSpinner = findViewById(R.id.role_spinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.roles_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        roleSpinner.setAdapter(adapter);
+
         Button createAccountButton = findViewById(R.id.create_account_button);
         createAccountButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SignUp.this, Dashboard.class);
+                // Navigate to the Secure Your Account (Password setup) screen
+                Intent intent = new Intent(SignUp.this, SuccessfullyResetPassword.class);
                 startActivity(intent);
             }
         });

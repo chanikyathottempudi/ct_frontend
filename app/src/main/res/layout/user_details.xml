@@ -28,25 +28,40 @@
         android:textSize="20sp"
         android:textStyle="bold" />
 
-    <ImageView
+    <!-- Round Profile Image -->
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/user_image"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:layout_below="@id/user_details_title"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="32dp"
-        android:src="@drawable/ic_profile" />
+        android:src="@drawable/ic_profile"
+        app:civ_border_color="#FFFFFF"
+        app:civ_border_width="2dp" />
+
+    <TextView
+        android:id="@+id/change_photo_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/user_image"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:text="Tap image to change photo"
+        android:textColor="#0066ff"
+        android:textSize="12sp" />
 
     <TextView
         android:id="@+id/user_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/user_image"
+        android:layout_below="@id/change_photo_text"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:textColor="@android:color/white"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textSize="22sp"
+        android:textStyle="bold"
+        tools:text="User Name" />
 
     <TextView
         android:id="@+id/user_role"
@@ -54,7 +69,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/user_name"
         android:layout_centerHorizontal="true"
-        android:textColor="@android:color/white" />
+        android:layout_marginTop="4dp"
+        android:textColor="#A9A9A9"
+        android:textSize="16sp"
+        tools:text="Senior Radiologist" />
 
     <TextView
         android:id="@+id/user_id"
@@ -62,6 +80,64 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/user_role"
         android:layout_centerHorizontal="true"
-        android:textColor="@android:color/white" />
+        android:layout_marginTop="4dp"
+        android:textColor="#A9A9A9"
+        android:textSize="14sp"
+        tools:text="ID: RAD-204" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/user_id"
+        android:layout_marginTop="40dp"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CONTACT INFORMATION"
+            android:textColor="#0066ff"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Email: user@hospital.com"
+            android:textColor="@android:color/white" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Phone: +91 98765 43210"
+            android:textColor="@android:color/white" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="PERMISSIONS"
+            android:textColor="#0066ff"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="• Access to Patient Records"
+            android:textColor="@android:color/white" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="• Real-time Dose Monitoring"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
 
 </RelativeLayout>

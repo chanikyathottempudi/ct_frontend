@@ -40,6 +40,19 @@ public class PatientAlertSlideActivity extends AppCompatActivity {
         patientImageView.setImageResource(patientImageResId);
         alertDetailsTextView.setText("The radiation dose for the CT scan of " + patientName + " exceeded the moderate threshold by 20%. Please review the scan parameters and acknowledge the alert.");
 
+        // Click listener for Warning container and Forward Arrow to open Real Time Monitor
+        View warningContainer = findViewById(R.id.warning_container);
+        ImageView forwardArrow = findViewById(R.id.forward_arrow);
+
+        View.OnClickListener openMonitor = v -> {
+            Intent monitorIntent = new Intent(PatientAlertSlideActivity.this, RealTimeMonitor.class);
+            monitorIntent.putExtra("patientName", patientName);
+            startActivity(monitorIntent);
+        };
+
+        if (warningContainer != null) warningContainer.setOnClickListener(openMonitor);
+        if (forwardArrow != null) forwardArrow.setOnClickListener(openMonitor);
+
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.navigation_alerts);
@@ -50,7 +63,7 @@ public class PatientAlertSlideActivity extends AppCompatActivity {
                 startActivity(new Intent(PatientAlertSlideActivity.this, Dashboard.class));
                 return true;
             } else if (itemId == R.id.navigation_patients) {
-                startActivity(new Intent(PatientAlertSlideActivity.this, PatientList.class));
+                startActivity(new Intent(PatientAlertSlideActivity.this, ListOfPatientsActivity.class));
                 return true;
             } else if (itemId == R.id.navigation_scans) {
                 // Assuming you have a ScansActivity

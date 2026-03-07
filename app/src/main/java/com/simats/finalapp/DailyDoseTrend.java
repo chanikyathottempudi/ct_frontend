@@ -41,9 +41,6 @@ public class DailyDoseTrend extends AppCompatActivity {
             } else if (itemId == R.id.navigation_patients) {
                 startActivity(new Intent(DailyDoseTrend.this, ListOfPatientsActivity.class));
                 return true;
-            } else if (itemId == R.id.navigation_scans) {
-                startActivity(new Intent(DailyDoseTrend.this, NewScanRegistrationActivity.class));
-                return true;
             } else if (itemId == R.id.navigation_alerts) {
                 startActivity(new Intent(DailyDoseTrend.this, AlertSlideActivity.class));
                 return true;

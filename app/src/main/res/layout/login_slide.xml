@@ -78,16 +78,17 @@
         android:text="Forgot Password?"
         android:textColor="#cccccc" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/secure_login_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/forgot_password_text"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="20dp"
-        android:background="#0066ff"
+        android:backgroundTint="#0066ff"
         android:text="Secure Login"
-        android:textColor="@android:color/white" />
+        android:textColor="@android:color/white"
+        app:cornerRadius="24dp" />
 
     <TextView
         android:id="@+id/sign_up_text"

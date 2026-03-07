@@ -43,7 +43,7 @@
         android:layout_below="@id/profile_image"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="8dp"
-        android:text="Dr. Amelia Chen"
+        android:text="Dr. Emily Carter"
         android:textColor="@android:color/black"
         android:textSize="18sp"
         android:textStyle="bold" />
@@ -67,8 +67,10 @@
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/edit_text_background_light"
+        android:enabled="false"
         android:hint="e.g., Radiologist"
-        android:padding="15dp" />
+        android:padding="15dp"
+        android:textColor="@android:color/black" />
 
     <TextView
         android:id="@+id/specialization_label"
@@ -89,8 +91,10 @@
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/edit_text_background_light"
+        android:enabled="false"
         android:hint="e.g., Oncology"
-        android:padding="15dp" />
+        android:padding="15dp"
+        android:textColor="@android:color/black" />
 
     <TextView
         android:id="@+id/role_label"
@@ -111,28 +115,34 @@
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/edit_text_background_light"
+        android:enabled="false"
         android:hint="e.g., Doctor, Admin"
-        android:padding="15dp" />
+        android:padding="15dp"
+        android:textColor="@android:color/black" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/complete_setup_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/logout_button"
         android:layout_marginHorizontal="20dp"
-        android:background="#0066ff"
+        android:backgroundTint="#0066ff"
         android:text="Complete Setup"
-        android:textColor="@android:color/white" />
+        android:textColor="@android:color/white"
+        app:cornerRadius="24dp" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/logout_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginHorizontal="20dp"
         android:layout_marginBottom="32dp"
-        android:background="@drawable/logout_button_background"
+        android:backgroundTint="#f0f4f8"
         android:text="Logout"
-        android:textColor="#0066ff" />
+        android:textColor="#0066ff"
+        app:cornerRadius="24dp"
+        app:strokeColor="#0066ff"
+        app:strokeWidth="1dp" />
 
 </RelativeLayout>

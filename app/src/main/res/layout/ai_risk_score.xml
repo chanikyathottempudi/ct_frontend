@@ -38,6 +38,7 @@
                     android:src="@drawable/ic_arrow_back" />
 
                 <TextView
+                    android:id="@+id/title_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
@@ -56,6 +57,7 @@
                 android:src="@drawable/img_15" />
 
             <TextView
+                android:id="@+id/confidence_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -113,22 +115,24 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="High Risk Exams"
+                            android:text="High Risk Status"
                             android:textColor="@android:color/black"
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/high_risk_desc"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Immediate attention needed" />
+                            android:text="Processing..." />
                     </LinearLayout>
 
                     <TextView
+                        android:id="@+id/high_risk_value"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:text="14"
+                        android:text="0"
                         android:textColor="@android:color/black"
                         android:textSize="24sp"
                         android:textStyle="bold" />
@@ -165,22 +169,24 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Pediatric Risk Alerts"
+                            android:text="Safety Alerts"
                             android:textColor="@android:color/black"
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/pediatric_risk_desc"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Specialized protocol triggers" />
+                            android:text="Processing..." />
                     </LinearLayout>
 
                     <TextView
+                        android:id="@+id/pediatric_risk_value"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:text="3"
+                        android:text="0"
                         android:textColor="@android:color/black"
                         android:textSize="24sp"
                         android:textStyle="bold" />
@@ -217,36 +223,39 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Protocol Deviations"
+                            android:text="Dose Anomaly"
                             android:textColor="@android:color/black"
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/protocol_deviations_desc"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Variance from clinical standard" />
+                            android:text="Processing..." />
                     </LinearLayout>
 
                     <TextView
+                        android:id="@+id/protocol_deviations_value"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:text="5"
+                        android:text="0"
                         android:textColor="@android:color/black"
                         android:textSize="24sp"
                         android:textStyle="bold" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/view_detailed_analysis_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:background="#0066ff"
+                android:backgroundTint="#0066ff"
                 android:text="View Detailed Analysis"
-                android:textColor="@android:color/white" />
+                android:textColor="@android:color/white"
+                app:cornerRadius="24dp" />
 
         </LinearLayout>
 

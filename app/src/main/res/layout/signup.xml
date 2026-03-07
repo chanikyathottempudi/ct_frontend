@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -45,6 +46,7 @@
                 android:textStyle="bold" />
 
             <EditText
+                android:id="@+id/full_name_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/edit_text_background"
@@ -60,25 +62,11 @@
                 android:textStyle="bold" />
 
             <EditText
+                android:id="@+id/license_number_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/edit_text_background"
                 android:hint="1234567"
-                android:padding="12dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Hospital Department"
-                android:textColor="@android:color/black"
-                android:textStyle="bold" />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/edit_text_background"
-                android:hint="Radiology"
                 android:padding="12dp" />
 
             <TextView
@@ -90,6 +78,7 @@
                 android:textStyle="bold" />
 
             <EditText
+                android:id="@+id/email_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/edit_text_background"
@@ -105,19 +94,21 @@
                 android:textStyle="bold" />
 
             <Spinner
+                android:id="@+id/role_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/edit_text_background"
                 android:padding="12dp" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/create_account_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
-                android:background="#0066ff"
+                android:backgroundTint="#0066ff"
                 android:text="Create Account"
-                android:textColor="@android:color/white" />
+                android:textColor="@android:color/white"
+                app:cornerRadius="24dp" />
 
         </LinearLayout>
     </ScrollView>

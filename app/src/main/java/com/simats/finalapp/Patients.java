@@ -28,11 +28,22 @@ public class Patients extends AppCompatActivity {
         ListView patientsListView = findViewById(R.id.patients_list_view);
 
         patients = new ArrayList<>();
+        // Original 5
         patients.add(new Patient("Ethan Carter", "123456789", "Male", R.drawable.men_icon));
         patients.add(new Patient("Sophia Clark", "987654321", "Female", R.drawable.women_icon));
         patients.add(new Patient("Liam Davis", "456789123", "Male", R.drawable.men_icon));
         patients.add(new Patient("Olivia Evans", "789123456", "Female", R.drawable.women_icon));
         patients.add(new Patient("Noah Foster", "321654987", "Male", R.drawable.men_icon));
+
+        // 8 New Patients as requested
+        patients.add(new Patient("David Miller", "P106", "Male", R.drawable.men_icon));
+        patients.add(new Patient("Sarah Taylor", "P107", "Female", R.drawable.women_icon));
+        patients.add(new Patient("James Anderson", "P108", "Male", R.drawable.men_icon));
+        patients.add(new Patient("Linda Thomas", "P109", "Female", R.drawable.women_icon));
+        patients.add(new Patient("Charles Jackson", "P110", "Male", R.drawable.men_icon));
+        patients.add(new Patient("Barbara White", "P111", "Female", R.drawable.women_icon));
+        patients.add(new Patient("William Harris", "P112", "Male", R.drawable.men_icon));
+        patients.add(new Patient("Susan Martin", "P113", "Female", R.drawable.women_icon));
 
         adapter = new PatientAdapter(this, patients);
         patientsListView.setAdapter(adapter);
@@ -49,8 +60,20 @@ public class Patients extends AppCompatActivity {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.navigation_patients);
         bottomNavigationView.setOnItemSelectedListener(item -> {
-            if (item.getItemId() == R.id.navigation_dashboard) {
-                finish();
+            int itemId = item.getItemId();
+            if (itemId == R.id.navigation_dashboard) {
+                startActivity(new Intent(this, Dashboard.class));
+                return true;
+            } else if (itemId == R.id.navigation_patients) {
+                return true;
+            } else if (itemId == R.id.navigation_scans) {
+                startActivity(new Intent(this, NewScanRegistrationActivity.class));
+                return true;
+            } else if (itemId == R.id.navigation_alerts) {
+                startActivity(new Intent(this, AlertSlideActivity.class));
+                return true;
+            } else if (itemId == R.id.navigation_admin) {
+                startActivity(new Intent(this, AdminControlCenterActivity.class));
                 return true;
             }
             return false;

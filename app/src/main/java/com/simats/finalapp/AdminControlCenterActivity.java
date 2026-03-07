@@ -74,9 +74,10 @@ public class AdminControlCenterActivity extends AppCompatActivity {
         });
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        // This ensures the Admin key is highlighted when this slide is open
         bottomNavigationView.setSelectedItemId(R.id.navigation_admin);
 
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+        bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int itemId = item.getItemId();
@@ -84,7 +85,7 @@ public class AdminControlCenterActivity extends AppCompatActivity {
                     startActivity(new Intent(AdminControlCenterActivity.this, Dashboard.class));
                     return true;
                 } else if (itemId == R.id.navigation_patients) {
-                    startActivity(new Intent(AdminControlCenterActivity.this, PatientList.class));
+                    startActivity(new Intent(AdminControlCenterActivity.this, ListOfPatientsActivity.class));
                     return true;
                 } else if (itemId == R.id.navigation_scans) {
                     startActivity(new Intent(AdminControlCenterActivity.this, NewScanRegistrationActivity.class));
@@ -93,6 +94,7 @@ public class AdminControlCenterActivity extends AppCompatActivity {
                     startActivity(new Intent(AdminControlCenterActivity.this, AlertSlideActivity.class));
                     return true;
                 } else if (itemId == R.id.navigation_admin) {
+                    // Already here
                     return true;
                 }
                 return false;

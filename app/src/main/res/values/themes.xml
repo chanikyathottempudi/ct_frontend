@@ -2,8 +2,12 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.FinalApp" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="materialButtonStyle">@style/Widget.App.Button</item>
     </style>
 
     <style name="Theme.FinalApp" parent="Base.Theme.FinalApp" />
+
+    <style name="Widget.App.Button" parent="Widget.Material3.Button">
+        <item name="cornerRadius">24dp</item>
+    </style>
 </resources>

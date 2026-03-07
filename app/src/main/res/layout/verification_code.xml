@@ -50,60 +50,97 @@
         android:orientation="horizontal">
 
         <EditText
-            style="@style/VerificationCodeInput"
+            android:id="@+id/code_1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textColor="@android:color/white" />
 
         <EditText
-            style="@style/VerificationCodeInput"
+            android:id="@+id/code_2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textColor="@android:color/white" />
 
         <EditText
-            style="@style/VerificationCodeInput"
+            android:id="@+id/code_3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textColor="@android:color/white" />
 
         <EditText
-            style="@style/VerificationCodeInput"
+            android:id="@+id/code_4"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textColor="@android:color/white" />
 
         <EditText
-            style="@style/VerificationCodeInput"
+            android:id="@+id/code_5"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textColor="@android:color/white" />
 
         <EditText
-            style="@style/VerificationCodeInput"
+            android:id="@+id/code_6"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textColor="@android:color/white" />
     </LinearLayout>
 
     <TextView
-        android:id="@+id/resend_code_text"
+        android:id="@+id/timer_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/code_inputs"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="16dp"
         android:text="Resend code in 00:59"
         android:textColor="#cccccc" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/resend_button"
+        style="@style/Widget.Material3.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/timer_text"
+        android:layout_centerHorizontal="true"
+        android:enabled="false"
+        android:text="Resend Code"
+        android:textColor="@android:color/darker_gray"
+        app:cornerRadius="24dp" />
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/verify_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_margin="20dp"
-        android:background="#0066ff"
+        android:backgroundTint="#0066ff"
         android:text="Verify"
-        android:textColor="@android:color/white" />
+        android:textColor="@android:color/white"
+        app:cornerRadius="24dp" />
 
 </RelativeLayout>

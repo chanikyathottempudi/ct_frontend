@@ -20,135 +20,52 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".MainActivity"
-            android:exported="false" />
-        <activity
-            android:name=".SecondSlide"
-            android:exported="false" />
-        <activity
-            android:name=".SelectRole"
-            android:exported="false" />
-        <activity
-            android:name=".LoginSlide"
-            android:exported="false" />
-        <activity
-            android:name=".ForgotPassword"
-            android:exported="false" />
-        <activity
-            android:name=".VerificationCode"
-            android:exported="false" />
-        <activity
-            android:name=".SuccessfullyResetPassword"
-            android:exported="false" />
-        <activity
-            android:name=".SignUp"
-            android:exported="false" />
-        <activity
-            android:name=".Dashboard"
-            android:exported="false" />
-        <activity
-            android:name=".ProfileSetup"
-            android:exported="false" />
-        <activity
-            android:name=".RealTimeMonitor"
-            android:exported="false" />
-        <activity
-            android:name=".DoseStatistics"
-            android:exported="false" />
-        <activity
-            android:name=".DailyDoseTrend"
-            android:exported="false" />
-        <activity
-            android:name=".MonthlyDoseTrend"
-            android:exported="false" />
-        <activity
-            android:name=".Patients"
-            android:exported="false" />
-        <activity
-            android:name=".PatientsList"
-            android:exported="false" />
-        <activity
-            android:name=".RegisterPatient"
-            android:exported="false" />
-        <activity
-            android:name=".PatientDetails"
-            android:exported="false" />
-        <activity
-            android:name=".PatientList"
-            android:exported="false" />
-        <activity
-            android:name=".ExamHistory"
-            android:exported="false" />
-        <activity
-            android:name=".AiRiskScoreActivity"
-            android:exported="false" />
-        <activity
-            android:name=".PredictDoseActivity"
-            android:exported="false" />
-        <activity
-            android:name=".PredictDoseSlideActivity"
-            android:exported="false" />
-        <activity
-            android:name=".DetectAnomaliesSlideActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ListOfPatientsActivity"
-            android:exported="false" />
-        <activity
-            android:name=".AlertSlideActivity"
-            android:exported="false" />
-        <activity
-            android:name=".PatientAlertSlideActivity"
-            android:exported="false" />
-        <activity
-            android:name=".PatientGraphActivity"
-            android:exported="false" />
-        <activity
-            android:name=".PatientSummaryActivity"
-            android:exported="false" />
-        <activity
-            android:name=".NewScanRegistrationActivity"
-            android:exported="false" />
-        <activity
-            android:name=".DoseStatisticsPatientDetailsActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MonthlyDosePatientDetailsActivity"
-            android:exported="false" />
-        <activity
-            android:name=".PatientsActivity"
-            android:exported="false" />
-        <activity
-            android:name=".AdminControlCenterActivity"
-            android:exported="false" />
-        <activity
-            android:name=".UserManagementActivity"
-            android:exported="false" />
-        <activity
-            android:name=".NewUserAddingSlideActivity"
-            android:exported="false" />
-        <activity
-            android:name=".UserDetailsActivity"
-            android:exported="false" />
-        <activity
-            android:name=".SecurityAndPrivacyActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MachineIntegrationActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ComplianceReportsActivity"
-            android:exported="false" />
-        <activity
-            android:name=".SystemLogsActivity"
-            android:exported="false" />
-        <activity
-            android:name=".DailyDosePatientDetailsActivity"
-            android:exported="false" />
-        <activity
-            android:name=".RealTimePatientDetailsActivity"
-            android:exported="false" />
+        <activity android:name=".MainActivity" android:exported="false" />
+        <activity android:name=".SecondSlide" android:exported="false" />
+        <activity android:name=".SelectRole" android:exported="false" />
+        <activity android:name=".LoginSlide" android:exported="false" />
+        <activity android:name=".ForgotPassword" android:exported="false" />
+        <activity android:name=".VerificationCode" android:exported="false" />
+        <activity android:name=".SuccessfullyResetPassword" android:exported="false" />
+        <activity android:name=".SignUp" android:exported="false" />
+        <activity android:name=".Dashboard" android:exported="false" />
+        <activity android:name=".ProfileSetup" android:exported="false" />
+        <activity android:name=".RealTimeMonitor" android:exported="false" />
+        <activity android:name=".DoseStatistics" android:exported="false" />
+        <activity android:name=".DailyDoseTrend" android:exported="false" />
+        <activity android:name=".MonthlyDoseTrend" android:exported="false" />
+        <activity android:name=".Patients" android:exported="false" />
+        <activity android:name=".PatientsList" android:exported="false" />
+        <activity android:name=".RegisterPatient" android:exported="false" />
+        <activity android:name=".PatientDetails" android:exported="false" />
+        <activity android:name=".PatientList" android:exported="false" />
+        <activity android:name=".ExamHistory" android:exported="false" />
+        <activity android:name=".AiRiskScoreActivity" android:exported="false" />
+        <activity android:name=".PredictDoseActivity" android:exported="false" />
+        <activity android:name=".PredictDoseSlideActivity" android:exported="false" />
+        <activity android:name=".DetectAnomaliesSlideActivity" android:exported="false" />
+        <activity android:name=".ListOfPatientsActivity" android:exported="false" />
+        <activity android:name=".AlertSlideActivity" android:exported="false" />
+        <activity android:name=".PatientAlertSlideActivity" android:exported="false" />
+        <activity android:name=".PatientGraphActivity" android:exported="false" />
+        <activity android:name=".PatientSummaryActivity" android:exported="false" />
+        <activity android:name=".NewScanRegistrationActivity" android:exported="false" />
+        <activity android:name=".DicomUploadActivity" android:exported="false" />
+        <activity android:name=".ScanParametersActivity" android:exported="false" />
+        <activity android:name=".NewScansActivity" android:exported="false" />
+        <activity android:name=".DoseStatisticsPatientDetailsActivity" android:exported="false" />
+        <activity android:name=".MonthlyDosePatientDetailsActivity" android:exported="false" />
+        <activity android:name=".PatientsActivity" android:exported="false" />
+        <activity android:name=".AdminControlCenterActivity" android:exported="false" />
+        <activity android:name=".UserManagementActivity" android:exported="false" />
+        <activity android:name=".NewUserAddingSlideActivity" android:exported="false" />
+        <activity android:name=".UserDetailsActivity" android:exported="false" />
+        <activity android:name=".SecurityAndPrivacyActivity" android:exported="false" />
+        <activity android:name=".MachineIntegrationActivity" android:exported="false" />
+        <activity android:name=".ComplianceReportsActivity" android:exported="false" />
+        <activity android:name=".SystemLogsActivity" android:exported="false" />
+        <activity android:name=".DailyDosePatientDetailsActivity" android:exported="false" />
+        <activity android:name=".RealTimePatientDetailsActivity" android:exported="false" />
     </application>
 
 </manifest>
