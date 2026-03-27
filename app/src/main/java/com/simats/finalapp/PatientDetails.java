@@ -55,13 +55,9 @@ public class PatientDetails extends AppCompatActivity {
         patientInfoTextView.setText(patientGender + ", 32");
         patientIdTextView.setText("Patient ID: " + patientId);
 
-        // Find current patient
-        List<Patient> patients = PatientManager.getInstance().getPatients();
-        for (Patient p : patients) {
-            if (p.getId().equals(patientId)) {
-                currentPatient = p;
-                break;
-            }
+        // Initialize currentPatient from intent data if not in manager
+        if (currentPatient == null) {
+            currentPatient = new Patient(patientName, patientId, patientGender, patientImageResId);
         }
 
         if (currentPatient != null) {

@@ -46,6 +46,7 @@
             android:textStyle="bold" />
 
         <EditText
+            android:id="@+id/kvp_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -62,6 +63,7 @@
             android:textStyle="bold" />
 
         <EditText
+            android:id="@+id/ma_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -78,6 +80,7 @@
             android:textStyle="bold" />
 
         <EditText
+            android:id="@+id/pitch_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -94,6 +97,7 @@
             android:textStyle="bold" />
 
         <EditText
+            android:id="@+id/scan_length_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"

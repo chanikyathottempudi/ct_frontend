@@ -53,12 +53,27 @@ public class RegisterPatient extends AppCompatActivity {
                 allergies = "None";
             }
 
-            int imageResId = "Female".equalsIgnoreCase(gender) ? R.drawable.women_icon : R.drawable.men_icon;
-            Patient newPatient = new Patient(fullName, patientId, gender, imageResId, allergies);
-            PatientManager.getInstance().addPatient(newPatient);
+            com.simats.finalapp.model.PatientRequest request = new com.simats.finalapp.model.PatientRequest(fullName, patientId, "Registered via App", gender, dob, allergies);
+            
+            com.simats.finalapp.network.RetrofitClient.getApiService().registerPatient(request).enqueue(new retrofit2.Callback<com.simats.finalapp.model.PatientResponse>() {
+                @Override
+                public void onResponse(retrofit2.Call<com.simats.finalapp.model.PatientResponse> call, retrofit2.Response<com.simats.finalapp.model.PatientResponse> response) {
+                    if (response.isSuccessful()) {
+                        android.widget.Toast.makeText(RegisterPatient.this, "Patient Registered in Backend!", android.widget.Toast.LENGTH_SHORT).show();
+                    } else {
+                        android.widget.Toast.makeText(RegisterPatient.this, "Sync Failed", android.widget.Toast.LENGTH_SHORT).show();
+                    }
+                    setResult(RESULT_OK);
+                    finish();
+                }
 
-            setResult(RESULT_OK);
-            finish();
+                @Override
+                public void onFailure(retrofit2.Call<com.simats.finalapp.model.PatientResponse> call, Throwable t) {
+                    android.widget.Toast.makeText(RegisterPatient.this, "Network Error", android.widget.Toast.LENGTH_SHORT).show();
+                    setResult(RESULT_OK);
+                    finish();
+                }
+            });
         });
     }
 }

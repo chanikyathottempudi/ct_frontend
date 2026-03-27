@@ -26,11 +26,41 @@ public class ScanParametersActivity extends AppCompatActivity {
             }
         });
 
+        final android.widget.EditText kvpInput = findViewById(R.id.kvp_input);
+        final android.widget.EditText maInput = findViewById(R.id.ma_input);
+        final android.widget.EditText pitchInput = findViewById(R.id.pitch_input);
+        final android.widget.EditText scanLengthInput = findViewById(R.id.scan_length_input);
+
         Button saveButton = findViewById(R.id.save_button);
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Handle save button click
+                String kvp = kvpInput.getText().toString();
+                String ma = maInput.getText().toString();
+                String pitch = pitchInput.getText().toString();
+                String scanLength = scanLengthInput.getText().toString();
+
+                if (android.text.TextUtils.isEmpty(kvp) || android.text.TextUtils.isEmpty(ma)) {
+                    android.widget.Toast.makeText(ScanParametersActivity.this, "kVp and mA are required", android.widget.Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                com.simats.finalapp.model.ScanParameterRequest request = new com.simats.finalapp.model.ScanParameterRequest(kvp, ma, pitch, scanLength);
+                com.simats.finalapp.network.RetrofitClient.getApiService().saveScanParameters(request).enqueue(new retrofit2.Callback<Void>() {
+                    @Override
+                    public void onResponse(retrofit2.Call<Void> call, retrofit2.Response<Void> response) {
+                        if (response.isSuccessful()) {
+                            android.widget.Toast.makeText(ScanParametersActivity.this, "Scan parameters saved to backend!", android.widget.Toast.LENGTH_SHORT).show();
+                        } else {
+                            android.widget.Toast.makeText(ScanParametersActivity.this, "Failed to save: " + response.message(), android.widget.Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(retrofit2.Call<Void> call, Throwable t) {
+                        android.widget.Toast.makeText(ScanParametersActivity.this, "Network Error: " + t.getMessage(), android.widget.Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
 
