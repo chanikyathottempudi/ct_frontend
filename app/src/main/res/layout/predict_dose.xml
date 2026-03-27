@@ -55,6 +55,7 @@
                 android:text="Body Part" />
 
             <EditText
+                android:id="@+id/body_part_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/edit_text_background"
@@ -79,6 +80,7 @@
                         android:text="Age (years)" />
 
                     <EditText
+                        android:id="@+id/age_input"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/edit_text_background"
@@ -100,6 +102,7 @@
                         android:text="Weight (kg)" />
 
                     <EditText
+                        android:id="@+id/weight_input"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/edit_text_background"
@@ -127,6 +130,7 @@
                         android:text="kVp" />
 
                     <EditText
+                        android:id="@+id/kvp_input"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/edit_text_background"
@@ -148,6 +152,7 @@
                         android:text="mAs" />
 
                     <EditText
+                        android:id="@+id/mas_input"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/edit_text_background"
@@ -189,6 +194,7 @@
                             android:text="AI ANALYSIS RESULTS" />
 
                         <TextView
+                            android:id="@+id/risk_status_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
@@ -205,6 +211,7 @@
                         android:text="PREDICTED DLP" />
 
                     <TextView
+                        android:id="@+id/predicted_dlp_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="350 mGy.cm"
@@ -225,6 +232,7 @@
                         android:text="EFFECTIVE DOSE" />
 
                     <TextView
+                        android:id="@+id/effective_dose_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="7.2 mSv"
@@ -283,6 +291,7 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/protocol_tip_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Reduce kVp for pediatric patients to lower dose." />

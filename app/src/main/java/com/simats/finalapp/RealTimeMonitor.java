@@ -30,6 +30,14 @@ public class RealTimeMonitor extends AppCompatActivity {
         adapter = new RealTimeMonitorAdapter(patientList);
         recyclerView.setAdapter(adapter);
 
+        PatientManager.getInstance().syncWithBackend(() -> {
+            runOnUiThread(() -> {
+                if (adapter != null) {
+                    adapter.notifyDataSetChanged();
+                }
+            });
+        });
+
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.navigation_dashboard);
 

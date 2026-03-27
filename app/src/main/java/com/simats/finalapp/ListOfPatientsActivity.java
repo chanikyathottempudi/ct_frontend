@@ -2,19 +2,26 @@ package com.simats.finalapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.simats.finalapp.model.PatientResponse;
+import com.simats.finalapp.network.RetrofitClient;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ListOfPatientsActivity extends AppCompatActivity {
 
@@ -22,6 +29,7 @@ public class ListOfPatientsActivity extends AppCompatActivity {
     private PatientAdapter adapter;
     private ActivityResultLauncher<Intent> registerPatientLauncher;
     private boolean isFromAiSafety = false;
+    private boolean isFromMonthlyDose = false;
     private String targetAiActivity = "";
 
     @Override
@@ -30,24 +38,36 @@ public class ListOfPatientsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list_of_patients);
 
         isFromAiSafety = getIntent().getBooleanExtra("FROM_AI_SAFETY", false);
+        isFromMonthlyDose = getIntent().getBooleanExtra("FROM_MONTHLY_DOSE", false);
         targetAiActivity = getIntent().getStringExtra("TARGET_AI_ACTIVITY");
 
         TextView headerTitle = findViewById(R.id.header).findViewById(R.id.title_text);
         if (isFromAiSafety && headerTitle != null) {
             headerTitle.setText("Select Patient for AI");
+        } else if (isFromMonthlyDose && headerTitle != null) {
+            headerTitle.setText("Select Patient for Monthly Dose");
         }
 
         findViewById(R.id.back_arrow).setOnClickListener(v -> finish());
 
         ListView patientsListView = findViewById(R.id.patients_list_view);
-        patients = PatientManager.getInstance().getPatients();
+        patients = new ArrayList<>();
         adapter = new PatientAdapter(this, (ArrayList<Patient>) patients);
         patientsListView.setAdapter(adapter);
+
+        fetchPatientsFromBackend();
 
         patientsListView.setOnItemClickListener((parent, view, position, id) -> {
             Patient selectedPatient = patients.get(position);
             
-            if (isFromAiSafety) {
+            if (isFromMonthlyDose) {
+                Intent intent = new Intent(this, MonthlyDosePatientDetailsActivity.class);
+                intent.putExtra("patientName", selectedPatient.getName());
+                intent.putExtra("patientId", selectedPatient.getId());
+                intent.putExtra("patientGender", selectedPatient.getGender());
+                intent.putExtra("patientImageResId", selectedPatient.getImageResId());
+                startActivity(intent);
+            } else if (isFromAiSafety) {
                 Intent intent;
                 if ("AI_RISK".equals(targetAiActivity)) {
                     intent = new Intent(this, AiRiskScoreActivity.class);
@@ -78,7 +98,7 @@ public class ListOfPatientsActivity extends AppCompatActivity {
                 new ActivityResultContracts.StartActivityForResult(),
                 result -> {
                     if (result.getResultCode() == RESULT_OK) {
-                        adapter.notifyDataSetChanged();
+                        fetchPatientsFromBackend();
                     }
                 }
         );
@@ -109,6 +129,16 @@ public class ListOfPatientsActivity extends AppCompatActivity {
         fabAddPatient.setOnClickListener(view -> {
             Intent intent = new Intent(this, RegisterPatient.class);
             registerPatientLauncher.launch(intent);
+        });
+    }
+
+    private void fetchPatientsFromBackend() {
+        PatientManager.getInstance().syncWithBackend(() -> {
+            runOnUiThread(() -> {
+                patients.clear();
+                patients.addAll(PatientManager.getInstance().getPatients());
+                adapter.notifyDataSetChanged();
+            });
         });
     }
 }

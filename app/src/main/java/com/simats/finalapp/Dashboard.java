@@ -50,7 +50,9 @@ public class Dashboard extends AppCompatActivity {
         });
 
         findViewById(R.id.monthly_dose_trend_card).setOnClickListener(v -> {
-            startActivity(new Intent(Dashboard.this, MonthlyDoseTrend.class));
+            Intent intent = new Intent(Dashboard.this, ListOfPatientsActivity.class);
+            intent.putExtra("FROM_MONTHLY_DOSE", true);
+            startActivity(intent);
         });
 
         activeAlertsCount = findViewById(R.id.active_alerts_count);

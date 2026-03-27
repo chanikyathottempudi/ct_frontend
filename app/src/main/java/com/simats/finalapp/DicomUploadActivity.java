@@ -81,19 +81,39 @@ public class DicomUploadActivity extends AppCompatActivity {
                     Toast.makeText(this, "Please select a file first", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                
-                String randomId = String.valueOf(100000000 + new Random().nextInt(900000000));
-                Patient newPatient = new Patient(patientName != null ? patientName : "New Patient", 
-                        randomId, "Unknown", R.drawable.men_icon, selectedFileUri.toString());
-                
-                PatientManager.getInstance().addPatient(newPatient);
 
-                Toast.makeText(this, "Scan saved successfully!", Toast.LENGTH_SHORT).show();
+                String pId = (intent != null && intent.getStringExtra("patient_id") != null) ? intent.getStringExtra("patient_id") : String.valueOf(100000 + new Random().nextInt(900000));
+                String pName = patientName != null ? patientName : "New Patient";
+                String notes = "Requesting Physician: " + requestingPhysician;
+
+                com.simats.finalapp.model.PatientRequest request = new com.simats.finalapp.model.PatientRequest(pName, pId, notes, "Unknown");
                 
-                Intent listIntent = new Intent(DicomUploadActivity.this, ListOfPatientsActivity.class);
-                listIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(listIntent);
-                finish();
+                com.simats.finalapp.network.RetrofitClient.getApiService().registerPatient(request).enqueue(new retrofit2.Callback<com.simats.finalapp.model.PatientResponse>() {
+                    @Override
+                    public void onResponse(retrofit2.Call<com.simats.finalapp.model.PatientResponse> call, retrofit2.Response<com.simats.finalapp.model.PatientResponse> response) {
+                        if (response.isSuccessful()) {
+                            Toast.makeText(DicomUploadActivity.this, "Patient registered successfully in backend!", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(DicomUploadActivity.this, "Backend sync failed: " + response.message(), Toast.LENGTH_SHORT).show();
+                        }
+                        
+                        // Proceed anyway for local UX or handle error strictly
+                        Intent listIntent = new Intent(DicomUploadActivity.this, ListOfPatientsActivity.class);
+                        listIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(listIntent);
+                        finish();
+                    }
+
+                    @Override
+                    public void onFailure(retrofit2.Call<com.simats.finalapp.model.PatientResponse> call, Throwable t) {
+                        Toast.makeText(DicomUploadActivity.this, "Network Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                        // Proceed anyway for demo
+                        Intent listIntent = new Intent(DicomUploadActivity.this, ListOfPatientsActivity.class);
+                        listIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(listIntent);
+                        finish();
+                    }
+                });
             });
         }
 

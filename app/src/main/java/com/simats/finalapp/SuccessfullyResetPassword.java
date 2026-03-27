@@ -63,11 +63,29 @@ public class SuccessfullyResetPassword extends AppCompatActivity {
                 return;
             }
 
-            Toast.makeText(this, "Account Secured Successfully!", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(SuccessfullyResetPassword.this, LoginSlide.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-            finish();
+            String email = getIntent().getStringExtra("email");
+            String code = getIntent().getStringExtra("code");
+
+            com.simats.finalapp.model.ResetPasswordRequest request = new com.simats.finalapp.model.ResetPasswordRequest(email, code, pass);
+            com.simats.finalapp.network.RetrofitClient.getApiService().finalResetPassword(request).enqueue(new retrofit2.Callback<com.simats.finalapp.model.VerificationResponse>() {
+                @Override
+                public void onResponse(retrofit2.Call<com.simats.finalapp.model.VerificationResponse> call, retrofit2.Response<com.simats.finalapp.model.VerificationResponse> response) {
+                    if (response.isSuccessful() && response.body() != null && response.body().isSuccess()) {
+                        Toast.makeText(SuccessfullyResetPassword.this, "Account Secured Successfully!", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(SuccessfullyResetPassword.this, LoginSlide.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                        finish();
+                    } else {
+                        Toast.makeText(SuccessfullyResetPassword.this, "Failed to reset password", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(retrofit2.Call<com.simats.finalapp.model.VerificationResponse> call, Throwable t) {
+                    Toast.makeText(SuccessfullyResetPassword.this, "Network Error", Toast.LENGTH_SHORT).show();
+                }
+            });
         });
     }
 

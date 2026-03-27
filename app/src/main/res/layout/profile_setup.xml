@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
+    android:background="#000033"
     tools:context=".ProfileSetup">
 
     <ImageView
@@ -14,6 +14,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_margin="16dp"
+        app:tint="@android:color/white"
         android:src="@drawable/ic_arrow_back" />
 
     <TextView
@@ -23,7 +24,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
         android:text="Profile Setup"
-        android:textColor="@android:color/black"
+        android:textColor="@android:color/white"
         android:textSize="20sp"
         android:textStyle="bold" />
 
@@ -44,7 +45,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="8dp"
         android:text="Dr. Emily Carter"
-        android:textColor="@android:color/black"
+        android:textColor="@android:color/white"
         android:textSize="18sp"
         android:textStyle="bold" />
 
@@ -56,7 +57,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="32dp"
         android:text="Professional Title"
-        android:textColor="@android:color/black"
+        android:textColor="@android:color/white"
         android:textStyle="bold" />
 
     <EditText
@@ -66,11 +67,12 @@
         android:layout_below="@+id/professional_title_label"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="8dp"
-        android:background="@drawable/edit_text_background_light"
+        android:background="@drawable/edit_text_background"
         android:enabled="false"
         android:hint="e.g., Radiologist"
         android:padding="15dp"
-        android:textColor="@android:color/black" />
+        android:textColor="@android:color/white"
+        android:textColorHint="#cccccc" />
 
     <TextView
         android:id="@+id/specialization_label"
@@ -80,7 +82,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="16dp"
         android:text="Specialization"
-        android:textColor="@android:color/black"
+        android:textColor="@android:color/white"
         android:textStyle="bold" />
 
     <EditText
@@ -90,11 +92,12 @@
         android:layout_below="@+id/specialization_label"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="8dp"
-        android:background="@drawable/edit_text_background_light"
+        android:background="@drawable/edit_text_background"
         android:enabled="false"
         android:hint="e.g., Oncology"
         android:padding="15dp"
-        android:textColor="@android:color/black" />
+        android:textColor="@android:color/white"
+        android:textColorHint="#cccccc" />
 
     <TextView
         android:id="@+id/role_label"
@@ -104,7 +107,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="16dp"
         android:text="Role"
-        android:textColor="@android:color/black"
+        android:textColor="@android:color/white"
         android:textStyle="bold" />
 
     <EditText
@@ -114,11 +117,12 @@
         android:layout_below="@+id/role_label"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="8dp"
-        android:background="@drawable/edit_text_background_light"
+        android:background="@drawable/edit_text_background"
         android:enabled="false"
         android:hint="e.g., Doctor, Admin"
         android:padding="15dp"
-        android:textColor="@android:color/black" />
+        android:textColor="@android:color/white"
+        android:textColorHint="#cccccc" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/complete_setup_button"
